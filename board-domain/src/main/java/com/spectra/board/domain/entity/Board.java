@@ -11,11 +11,13 @@ import com.spectra.board.domain.granule.BoardOptionKey;
 
 public class Board extends Post
 {
+    private String channelId;
     private String title;
     private String surveyId;
     private Map<BoardOptionKey, String> boardOptionMap;
     private List<Attach> attachList;
     private Set<String> viewUserIdSet;
+    private Set<String> tagIdSet;
     private int viewCount;
 
     public Board()
@@ -27,13 +29,25 @@ public class Board extends Post
         super(id);
     }
 
-    public Board(String title, String contents, String writeUserId)
+    public Board(String channelId, String title, String contents, String writeUserId)
     {
         super(contents, writeUserId);
+        this.channelId = channelId;
         this.title = title;
         this.attachList = new ArrayList<Attach>();
         this.viewUserIdSet = new HashSet<String>();
+        this.tagIdSet = new HashSet<String>();
         this.viewCount = 0;
+    }
+
+    public String getChannelId()
+    {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId)
+    {
+        this.channelId = channelId;
     }
 
     public String getTitle()
@@ -87,6 +101,16 @@ public class Board extends Post
         return viewUserIdSet;
     }
 
+    public void addTagId(String tagId)
+    {
+        this.tagIdSet.add(tagId);
+    }
+
+    public Set<String> getTagIdSet()
+    {
+        return this.tagIdSet;
+    }
+
     public int getViewCount()
     {
         return viewCount;
@@ -101,13 +125,15 @@ public class Board extends Post
     public String toString()
     {
         return "Board{" +
-                "title='" + title + '\'' +
+                "channelId='" + channelId + '\'' +
+                ", title='" + title + '\'' +
                 ", contents='" + getContents() + '\'' +
                 ", postDate=" + getPostDate() +
                 ", writeUserId='" + getWriteUserId() + '\'' +
                 ", surveyId='" + surveyId + '\'' +
                 ", attachList='" + attachList + '\'' +
                 ", viewUserIdSet=" + viewUserIdSet +
+                ", tagIdSet=" + tagIdSet +
                 ", viewCount=" + viewCount +
                 ", boardOptionMap=" + boardOptionMap +
                 '}';

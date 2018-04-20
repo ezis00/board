@@ -1,7 +1,10 @@
 package com.spectra.board.domain.entity;
 
+import com.spectra.board.domain.granule.UserType;
+
 public class User extends Entity
 {
+    private UserType userType;
     private String name;
     private String phone;
     private String email;
@@ -17,13 +20,24 @@ public class User extends Entity
         super(id);
     }
 
-    public User(String name, String phone, String email)
+    public User(UserType userType, String name, String phone, String email)
     {
+        this.userType = userType;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.joinDate = System.currentTimeMillis();
         this.loginCount = 0;
+    }
+
+    public UserType getUserType()
+    {
+        return userType;
+    }
+
+    public void setUserType(UserType userType)
+    {
+        this.userType = userType;
     }
 
     public String getName()
