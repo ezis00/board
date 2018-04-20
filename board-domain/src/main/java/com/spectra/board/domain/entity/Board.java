@@ -1,17 +1,22 @@
 package com.spectra.board.domain.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-public class Board extends Entity
+import com.spectra.board.domain.granule.Attach;
+import com.spectra.board.domain.granule.BoardOptionKey;
+
+public class Board extends Post
 {
-    private int sequence;
     private String title;
-    private String contents;
-    private long date;
-    private String writeUserId;
     private String surveyId;
-    private String attachId;
-    private List<String> viewUserIdList;
+    private Map<BoardOptionKey, String> boardOptionMap;
+    private List<Attach> attachList;
+    private Set<String> viewUserIdSet;
+    private int viewCount;
 
     public Board()
     {
@@ -22,23 +27,13 @@ public class Board extends Entity
         super(id);
     }
 
-    public Board(int sequence, String title, String contents, String writeUserId)
+    public Board(String title, String contents, String writeUserId)
     {
-        this.sequence = sequence;
+        super(contents, writeUserId);
         this.title = title;
-        this.contents = contents;
-        this.writeUserId = writeUserId;
-        this.date = System.currentTimeMillis();
-    }
-
-    public int getSequence()
-    {
-        return sequence;
-    }
-
-    public void setSequence(int sequence)
-    {
-        this.sequence = sequence;
+        this.attachList = new ArrayList<Attach>();
+        this.viewUserIdSet = new HashSet<String>();
+        this.viewCount = 0;
     }
 
     public String getTitle()
@@ -51,36 +46,6 @@ public class Board extends Entity
         this.title = title;
     }
 
-    public String getContents()
-    {
-        return contents;
-    }
-
-    public void setContents(String contents)
-    {
-        this.contents = contents;
-    }
-
-    public long getDate()
-    {
-        return date;
-    }
-
-    public void setDate(long date)
-    {
-        this.date = date;
-    }
-
-    public String getWriteUserId()
-    {
-        return writeUserId;
-    }
-
-    public void setWriteUserId(String writeUserId)
-    {
-        this.writeUserId = writeUserId;
-    }
-
     public String getSurveyId()
     {
         return surveyId;
@@ -91,38 +56,60 @@ public class Board extends Entity
         this.surveyId = surveyId;
     }
 
-    public String getAttachId()
+    public void addBoardOption(BoardOptionKey boardOptionKey, String value)
     {
-        return attachId;
+        this.boardOptionMap.put(boardOptionKey, value);
     }
 
-    public void setAttachId(String attachId)
+    public String getBoardOption(BoardOptionKey boardOptionKey)
     {
-        this.attachId = attachId;
+        return this.boardOptionMap.get(boardOptionKey);
     }
 
-    public List<String> getViewUserIdList()
+    public void addAttach(Attach attach)
     {
-        return viewUserIdList;
+        this.attachList.add(attach);
     }
 
-    public void setViewUserIdList(List<String> viewUserIdList)
+    public List<Attach> getAttachList()
     {
-        this.viewUserIdList = viewUserIdList;
+        return attachList;
+    }
+
+    public void addViewUserId(String viewUserId)
+    {
+        this.viewUserIdSet.add(viewUserId);
+        this.viewCount++;
+    }
+
+    public Set<String> getViewUserIdSet()
+    {
+        return viewUserIdSet;
+    }
+
+    public int getViewCount()
+    {
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount)
+    {
+        this.viewCount = viewCount;
     }
 
     @Override
     public String toString()
     {
         return "Board{" +
-                "sequence=" + sequence +
-                ", title='" + title + '\'' +
-                ", contents='" + contents + '\'' +
-                ", date=" + date +
-                ", writeUserId='" + writeUserId + '\'' +
+                "title='" + title + '\'' +
+                ", contents='" + getContents() + '\'' +
+                ", postDate=" + getPostDate() +
+                ", writeUserId='" + getWriteUserId() + '\'' +
                 ", surveyId='" + surveyId + '\'' +
-                ", attachId='" + attachId + '\'' +
-                ", viewUserIdList=" + viewUserIdList +
+                ", attachList='" + attachList + '\'' +
+                ", viewUserIdSet=" + viewUserIdSet +
+                ", viewCount=" + viewCount +
+                ", boardOptionMap=" + boardOptionMap +
                 '}';
     }
 }

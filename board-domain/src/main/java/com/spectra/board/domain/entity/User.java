@@ -5,6 +5,8 @@ public class User extends Entity
     private String name;
     private String phone;
     private String email;
+    private long joinDate;
+    private int loginCount;
 
     public User()
     {
@@ -20,6 +22,8 @@ public class User extends Entity
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.joinDate = System.currentTimeMillis();
+        this.loginCount = 0;
     }
 
     public String getName()
@@ -52,6 +56,26 @@ public class User extends Entity
         this.email = email;
     }
 
+    public long getJoinDate()
+    {
+        return joinDate;
+    }
+
+    public void setJoinDate(long joinDate)
+    {
+        this.joinDate = joinDate;
+    }
+
+    public int getLoginCount()
+    {
+        return loginCount;
+    }
+
+    public void setLoginCount(int loginCount)
+    {
+        this.loginCount = loginCount;
+    }
+
     @Override
     public String toString()
     {
@@ -59,6 +83,8 @@ public class User extends Entity
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", joinDate=" + joinDate +
+                ", loginCount=" + loginCount +
                 '}';
     }
 }
