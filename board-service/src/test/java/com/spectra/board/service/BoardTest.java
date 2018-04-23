@@ -13,6 +13,7 @@ public class BoardTest
     @Before
     public void setup()
     {
+        this.userLogic = new UserJavaLogic();
         this.channelLogic = new ChannelJavaLogic();
     }
 

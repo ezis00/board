@@ -1,6 +1,5 @@
 package com.spectra.board.domain.entity;
 
-import com.spectra.board.domain.granule.ChannelOptionMap;
 import com.spectra.board.domain.granule.NameValue;
 import com.spectra.board.domain.granule.NameValueList;
 import com.spectra.board.domain.granule.UserType;
@@ -116,11 +115,22 @@ public class User extends Entity
                     this.userType = UserType.fromJson(value);
                     break;
                 case "name":
-                    this.name = name;
+                    this.name = value;
                     break;
                 case "phone":
-                    this.phone = phone;
+                    this.phone = value;
                     break;
+                case "email":
+                    this.email = value;
+                    break;
+                case "joinDate":
+                    this.joinDate = Long.parseLong(value);
+                    break;
+                case "loginCount":
+                    this.loginCount = Integer.parseInt(value);
+                    break;
+                default:
+                    throw new RuntimeException("Undefined field:" + nameValue.getName());
             }
         }
 

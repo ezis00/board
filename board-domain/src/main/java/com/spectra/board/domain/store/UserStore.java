@@ -6,7 +6,7 @@ public interface UserStore
 {
     User retrieveByEmail(String email);
 
-    void create(User userCdo);
+    void create(User user);
 
     User retrieve(String userId);
 
