@@ -2,7 +2,7 @@ package com.spectra.board.domain.entity;
 
 import java.util.UUID;
 
-public class Entity
+public abstract class Entity
 {
     private final String id;
 

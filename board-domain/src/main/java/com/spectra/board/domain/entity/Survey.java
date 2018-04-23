@@ -7,8 +7,8 @@ import com.spectra.board.domain.granule.SurveyOptionKey;
 
 public class Survey extends Post
 {
-    private SurveyOptionKey surveyOptionKey;
     private String title;
+    private SurveyOptionKey surveyOptionKey;
     private List<SurveyAnswer> surveyAnswerList;
     private long expiredDate;
 
@@ -29,16 +29,6 @@ public class Survey extends Post
         this.expiredDate = expiredDate;
     }
 
-    public SurveyOptionKey getSurveyOptionKey()
-    {
-        return surveyOptionKey;
-    }
-
-    public void setSurveyOptionKey(SurveyOptionKey surveyOptionKey)
-    {
-        this.surveyOptionKey = surveyOptionKey;
-    }
-
     public String getTitle()
     {
         return title;
@@ -47,6 +37,16 @@ public class Survey extends Post
     public void setTitle(String title)
     {
         this.title = title;
+    }
+
+    public SurveyOptionKey getSurveyOptionKey()
+    {
+        return surveyOptionKey;
+    }
+
+    public void setSurveyOptionKey(SurveyOptionKey surveyOptionKey)
+    {
+        this.surveyOptionKey = surveyOptionKey;
     }
 
     public void addSurveyAnswer(SurveyAnswer surveyAnswer)
@@ -73,8 +73,8 @@ public class Survey extends Post
     public String toString()
     {
         return "Survey{" +
-                "surveyOptionKey=" + surveyOptionKey +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
+                ", surveyOptionKey=" + surveyOptionKey +
                 ", surveyAnswerList=" + surveyAnswerList +
                 ", expiredDate=" + expiredDate +
                 "} " + super.toString();
