@@ -12,6 +12,7 @@
     <modules>
         <module>board-domain</module>
         <module>board-service</module>
+        <module>share-util</module>
     </modules>
 
 </project>

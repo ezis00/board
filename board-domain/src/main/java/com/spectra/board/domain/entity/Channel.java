@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.spectra.board.domain.granule.ChannelOptionKey;
+import com.spectra.board.domain.granule.ChannelOptionMap;
+import com.spectra.board.domain.granule.NameValue;
+import com.spectra.board.domain.granule.NameValueList;
 
 public class Channel extends Entity
 {
     private String title;
-    private Map<ChannelOptionKey, String> channelOptionMap;
+    private ChannelOptionMap channelOptionMap;
     private List<String> memberUserIdList;
 
     public Channel()
@@ -20,7 +23,7 @@ public class Channel extends Entity
     public Channel(String title)
     {
         this.title = title;
-        this.channelOptionMap = new HashMap<ChannelOptionKey, String>();
+        this.channelOptionMap = new ChannelOptionMap();
         this.memberUserIdList = new ArrayList<String>();
     }
 
@@ -52,6 +55,23 @@ public class Channel extends Entity
     public void setMemberUserIdList(List<String> memberUserIdList)
     {
         this.memberUserIdList = memberUserIdList;
+    }
+
+    public void setValues(NameValueList nameValueList)
+    {
+        for (NameValue nameValue : nameValueList.getList())
+        {
+            String value = nameValue.getValue();
+            switch (nameValue.getName())
+            {
+                case "title":
+                    this.title = value;
+                    break;
+                case "channelOptionMap":
+                    this.channelOptionMap = ChannelOptionMap.fromJson(value);
+                    break;
+            }
+        }
     }
 
     @Override
