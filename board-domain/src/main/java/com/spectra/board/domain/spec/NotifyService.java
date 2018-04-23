@@ -1,5 +1,5 @@
 package com.spectra.board.domain.spec;
 
-public class NotifyService
+public interface NotifyService
 {
 }
