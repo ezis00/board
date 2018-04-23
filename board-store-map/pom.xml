@@ -9,12 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>board-service</artifactId>
+    <artifactId>board-store-map</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.spectra</groupId>
-            <artifactId>board-store-map</artifactId>
+            <artifactId>board-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

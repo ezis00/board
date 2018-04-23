@@ -18,6 +18,7 @@
         <module>board-domain</module>
         <module>board-service</module>
         <module>share-util</module>
+        <module>board-store-map</module>
     </modules>
 
 </project>

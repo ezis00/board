@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/board-domain/board-domain.iml" filepath="$PROJECT_DIR$/board-domain/board-domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/board-pom.iml" filepath="$PROJECT_DIR$/board-pom.iml" />
       <module fileurl="file://$PROJECT_DIR$/board-service/board-service.iml" filepath="$PROJECT_DIR$/board-service/board-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/board-store-map/board-store-map.iml" filepath="$PROJECT_DIR$/board-store-map/board-store-map.iml" />
       <module fileurl="file://$PROJECT_DIR$/share-util/share-util.iml" filepath="$PROJECT_DIR$/share-util/share-util.iml" />
     </modules>
   </component>
