@@ -7,21 +7,26 @@ import com.spectra.share.util.JsonUtil;
 
 public class ChannelMemberIdList
 {
-    private List<String> memberUserIdList;
+    private List<String> memberIdList;
 
     public ChannelMemberIdList()
     {
-        this.memberUserIdList = new ArrayList<>();
+        this.memberIdList = new ArrayList<>();
+    }
+
+    public ChannelMemberIdList(List<String> memberIdList)
+    {
+        this.memberIdList = memberIdList;
     }
 
     public List<String> getAll()
     {
-        return this.memberUserIdList;
+        return this.memberIdList;
     }
 
     public void add(String memberId)
     {
-        this.memberUserIdList.add(memberId);
+        this.memberIdList.add(memberId);
     }
 
     public static ChannelMemberIdList fromJson(String value)
@@ -33,7 +38,7 @@ public class ChannelMemberIdList
     public String toString()
     {
         return "ChannelMemberIdList{" +
-                "memberUserIdList=" + memberUserIdList +
+                "memberIdList=" + memberIdList +
                 '}';
     }
 }

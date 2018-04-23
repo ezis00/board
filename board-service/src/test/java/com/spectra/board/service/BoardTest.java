@@ -2,9 +2,13 @@ package com.spectra.board.service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.spectra.board.domain.entity.Channel;
+import com.spectra.board.domain.entity.Entity;
 import com.spectra.board.domain.entity.User;
+import com.spectra.board.domain.granule.ChannelMemberIdList;
+import com.spectra.board.domain.granule.ChannelOptionKey;
 import com.spectra.board.domain.granule.UserType;
 import com.spectra.board.domain.logic.ChannelLogic;
 import com.spectra.board.domain.logic.UserLogic;
@@ -15,6 +19,8 @@ public class BoardTest
 {
     private ChannelLogic channelLogic;
     private UserLogic userLogic;
+
+    private List<User> users;
 
     @Before
     public void setup()
@@ -27,7 +33,7 @@ public class BoardTest
 
     private void initUser()
     {
-        List<User> users = Arrays.asList(
+        users = Arrays.asList(
                 new User(UserType.ADMIN, "이정호", "010-2002-0014", "leejh@spectra.co.kr"),
                 new User(UserType.MANAGER, "홍길동", "010-1234-5678", "hong@spectra.co.kr"),
                 new User(UserType.MANAGER, "김좌진", "010-5678-1234", "kim@spectra.co.kr"),
@@ -48,7 +54,9 @@ public class BoardTest
     public void test()
     {
         Channel channel = new Channel("영업 비밀");
-//        channel.setMemberUserIdList();
-//        channelLogic.regist()
+        channel.setMemberIdList(new ChannelMemberIdList(users.subList(0, 5).stream().map(Entity::getId).collect(Collectors.toList())));
+        channel.addChannelOption(ChannelOptionKey.PRIVATE, "true");
+        channel.addChannelOption(ChannelOptionKey.ATTACH_MAX_SIZE_MB, "1000");
+        channelLogic.regist(channel);
     }
 }
