@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.spectra.board.domain.entity.Board;
 import com.spectra.board.domain.entity.Channel;
 import com.spectra.board.domain.entity.Entity;
 import com.spectra.board.domain.entity.User;
@@ -29,6 +30,7 @@ public class BoardTest
     {
         this.userLogic = new UserJavaLogic();
         this.channelLogic = new ChannelJavaLogic();
+        this.postLogic = new PostJavaLogic();
 
         initUser();
     }
@@ -56,14 +58,19 @@ public class BoardTest
     public void channelTest()
     {
         Channel channel = new Channel("영업 비밀");
-        channel.setMemberIdList(new ChannelMemberIdSet(users.subList(0, 5).stream().map(Entity::getId).collect(Collectors.toList())));
+        channel.setMemberIdSet(new ChannelMemberIdSet(users.subList(0, 5).stream().map(Entity::getId).collect(Collectors.toSet())));
         channel.addChannelOption(ChannelOptionKey.PRIVATE, "true");
         channel.addChannelOption(ChannelOptionKey.ATTACH_MAX_SIZE_MB, "1000");
         channelLogic.register(channel);
+
+
     }
 
-    public void boardTest()
+    public void boardTest(String channelId)
     {
+        User admin = users.get(0);
+        Board board  = new Board(channelId, "금주 회식 장소 투표 안내", "금주 몇월 몇시에 회식을 진행합니다. 원하는 장소를 선택해주세요.", admin.getId());
+        postLogic.register(board);
 
     }
 }

@@ -15,15 +15,14 @@ public class UserLogic implements UserService
     }
 
     @Override
-    public String register(User userCdo)
+    public String register(User user)
     {
-        User user = userStore.retrieveByEmail(userCdo.getEmail());
-        if (user != null)
+        if (userStore.retrieveByEmail(user.getEmail()) == null)
         {
-            throw new RuntimeException("Already Exist title:" + userCdo.getEmail());
+            throw new RuntimeException("Already Exist title:" + user.getEmail());
         }
-        userStore.create(userCdo);
-        return userCdo.getId();
+        userStore.create(user);
+        return user.getId();
     }
 
     @Override

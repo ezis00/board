@@ -15,10 +15,10 @@ public class PostLogic implements PostService
     }
 
     @Override
-    public String register(Post postCdo)
+    public String register(Post post)
     {
-        postStore.create(postCdo);
-        return postCdo.getId();
+        postStore.create(post);
+        return post.getId();
     }
 
     @Override

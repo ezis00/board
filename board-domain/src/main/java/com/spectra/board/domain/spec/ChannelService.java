@@ -5,7 +5,7 @@ import com.spectra.board.domain.granule.NameValueList;
 
 public interface ChannelService
 {
-    String register(Channel channelCdo);
+    String register(Channel channel);
 
     Channel find(String channelId);
 

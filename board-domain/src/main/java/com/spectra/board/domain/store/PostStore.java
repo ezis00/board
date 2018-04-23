@@ -4,8 +4,6 @@ import com.spectra.board.domain.entity.Post;
 
 public interface PostStore
 {
-    Post retrieveByTitle(String title);
-
     void create(Post post);
 
     Post retrieve(String postId);

@@ -2,6 +2,7 @@ package com.spectra.board.store.map;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import com.spectra.board.domain.entity.Channel;
 import com.spectra.board.domain.store.ChannelStore;

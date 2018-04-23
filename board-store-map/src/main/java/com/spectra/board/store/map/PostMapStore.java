@@ -16,12 +16,6 @@ public class PostMapStore implements PostStore
     }
 
     @Override
-    public Post retrieveByTitle(String title)
-    {
-        return this.postMap.values().stream().filter(post -> post.getTitle().equals(title)).findFirst().orElse(null);
-    }
-
-    @Override
     public void create(Post post)
     {
         this.postMap.put(post.getId(), post);

@@ -5,7 +5,7 @@ import com.spectra.board.domain.granule.NameValueList;
 
 public interface PostService
 {
-    String register(Post postCdo);
+    String register(Post post);
 
     Post find(String postId);
 

@@ -5,7 +5,7 @@ import com.spectra.board.domain.granule.NameValueList;
 
 public interface UserService
 {
-    String register(User userCdo);
+    String register(User user);
 
     User find(String userId);
 

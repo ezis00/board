@@ -1,6 +1,6 @@
 package com.spectra.board.domain.entity;
 
-import java.util.List;
+import java.util.Set;
 
 import com.spectra.board.domain.granule.ChannelMemberIdSet;
 import com.spectra.board.domain.granule.ChannelOptionKey;
@@ -45,7 +45,7 @@ public class Channel extends Entity
         this.channelOptionMap.put(channelOptionKey, value);
     }
 
-    public List<String> getMemberIdList()
+    public Set<String> getMemberIdSet()
     {
         return channelMemberIdSet.getAll();
     }
@@ -55,7 +55,7 @@ public class Channel extends Entity
         this.channelMemberIdSet.add(memberId);
     }
 
-    public void setMemberIdList(ChannelMemberIdSet channelMemberIdSet)
+    public void setMemberIdSet(ChannelMemberIdSet channelMemberIdSet)
     {
         this.channelMemberIdSet = channelMemberIdSet;
     }
