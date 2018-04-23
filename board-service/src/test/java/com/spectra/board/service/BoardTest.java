@@ -7,18 +7,20 @@ import java.util.stream.Collectors;
 import com.spectra.board.domain.entity.Channel;
 import com.spectra.board.domain.entity.Entity;
 import com.spectra.board.domain.entity.User;
-import com.spectra.board.domain.granule.ChannelMemberIdList;
+import com.spectra.board.domain.granule.ChannelMemberIdSet;
 import com.spectra.board.domain.granule.ChannelOptionKey;
 import com.spectra.board.domain.granule.UserType;
 import com.spectra.board.domain.logic.ChannelLogic;
+import com.spectra.board.domain.logic.PostLogic;
 import com.spectra.board.domain.logic.UserLogic;
 import org.junit.Before;
 import org.junit.Test;
 
 public class BoardTest
 {
-    private ChannelLogic channelLogic;
     private UserLogic userLogic;
+    private ChannelLogic channelLogic;
+    private PostLogic postLogic;
 
     private List<User> users;
 
@@ -46,17 +48,22 @@ public class BoardTest
         );
         for (User user : users)
         {
-            this.userLogic.regist(user);
+            this.userLogic.register(user);
         }
     }
 
     @Test
-    public void test()
+    public void channelTest()
     {
         Channel channel = new Channel("영업 비밀");
-        channel.setMemberIdList(new ChannelMemberIdList(users.subList(0, 5).stream().map(Entity::getId).collect(Collectors.toList())));
+        channel.setMemberIdList(new ChannelMemberIdSet(users.subList(0, 5).stream().map(Entity::getId).collect(Collectors.toList())));
         channel.addChannelOption(ChannelOptionKey.PRIVATE, "true");
         channel.addChannelOption(ChannelOptionKey.ATTACH_MAX_SIZE_MB, "1000");
-        channelLogic.regist(channel);
+        channelLogic.register(channel);
+    }
+
+    public void boardTest()
+    {
+
     }
 }

@@ -15,7 +15,7 @@ public class ChannelLogic implements ChannelService
     }
 
     @Override
-    public String regist(Channel channelCdo)
+    public String register(Channel channelCdo)
     {
         Channel channel = channelStore.retrieveByTitle(channelCdo.getTitle());
         if (channel != null)

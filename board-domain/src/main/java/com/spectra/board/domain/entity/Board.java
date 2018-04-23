@@ -8,13 +8,16 @@ import java.util.Set;
 
 import com.spectra.board.domain.granule.Attach;
 import com.spectra.board.domain.granule.BoardOptionKey;
+import com.spectra.board.domain.granule.BoardOptionMap;
+import com.spectra.board.domain.granule.NameValue;
+import com.spectra.board.domain.granule.NameValueList;
 
 public class Board extends Post
 {
     private String channelId;
     private String title;
     private String surveyId;
-    private Map<BoardOptionKey, String> boardOptionMap;
+    private BoardOptionMap boardOptionMap;
     private List<Attach> attachList;
     private Set<String> viewUserIdSet;
     private Set<String> tagIdSet;
@@ -34,9 +37,10 @@ public class Board extends Post
         super(contents, writeUserId);
         this.channelId = channelId;
         this.title = title;
-        this.attachList = new ArrayList<Attach>();
-        this.viewUserIdSet = new HashSet<String>();
-        this.tagIdSet = new HashSet<String>();
+        this.boardOptionMap = new BoardOptionMap();
+        this.attachList = new ArrayList<>();
+        this.viewUserIdSet = new HashSet<>();
+        this.tagIdSet = new HashSet<>();
         this.viewCount = 0;
     }
 
@@ -137,5 +141,31 @@ public class Board extends Post
                 ", viewCount=" + viewCount +
                 ", boardOptionMap=" + boardOptionMap +
                 '}';
+    }
+
+    @Override
+    public void setValues(NameValueList nameValueList)
+    {
+        for (NameValue nameValue : nameValueList.getList())
+        {
+            String value = nameValue.getValue();
+            switch (nameValue.getName())
+            {
+                case "channelId":
+                    this.channelId = value;
+                    break;
+                case "title":
+                    this.title = value;
+                    break;
+                case "surveyId":
+                    this.surveyId = value;
+                    break;
+                case "boardOptionMap":
+                    this.boardOptionMap = BoardOptionMap.fromJson(value);
+                    break;
+                default:
+                    super.setValues(nameValueList);
+            }
+        }
     }
 }

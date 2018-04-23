@@ -15,7 +15,7 @@ public class UserLogic implements UserService
     }
 
     @Override
-    public String regist(User userCdo)
+    public String register(User userCdo)
     {
         User user = userStore.retrieveByEmail(userCdo.getEmail());
         if (user != null)

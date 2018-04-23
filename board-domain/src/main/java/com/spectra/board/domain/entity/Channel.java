@@ -2,7 +2,7 @@ package com.spectra.board.domain.entity;
 
 import java.util.List;
 
-import com.spectra.board.domain.granule.ChannelMemberIdList;
+import com.spectra.board.domain.granule.ChannelMemberIdSet;
 import com.spectra.board.domain.granule.ChannelOptionKey;
 import com.spectra.board.domain.granule.ChannelOptionMap;
 import com.spectra.board.domain.granule.NameValue;
@@ -12,7 +12,7 @@ public class Channel extends Entity
 {
     private String title;
     private ChannelOptionMap channelOptionMap;
-    private ChannelMemberIdList channelMemberIdList;
+    private ChannelMemberIdSet channelMemberIdSet;
 
     public Channel()
     {
@@ -22,7 +22,7 @@ public class Channel extends Entity
     {
         this.title = title;
         this.channelOptionMap = new ChannelOptionMap();
-        this.channelMemberIdList = new ChannelMemberIdList();
+        this.channelMemberIdSet = new ChannelMemberIdSet();
     }
 
     public String getTitle()
@@ -47,17 +47,17 @@ public class Channel extends Entity
 
     public List<String> getMemberIdList()
     {
-        return channelMemberIdList.getAll();
+        return channelMemberIdSet.getAll();
     }
 
     public void addMemberId(String memberId)
     {
-        this.channelMemberIdList.add(memberId);
+        this.channelMemberIdSet.add(memberId);
     }
 
-    public void setMemberIdList(ChannelMemberIdList channelMemberIdList)
+    public void setMemberIdList(ChannelMemberIdSet channelMemberIdSet)
     {
-        this.channelMemberIdList = channelMemberIdList;
+        this.channelMemberIdSet = channelMemberIdSet;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Channel extends Entity
         return "Channel{" +
                 "title='" + title + '\'' +
                 ", channelOptionMap=" + channelOptionMap +
-                ", channelMemberIdList=" + channelMemberIdList +
+                ", channelMemberIdSet=" + channelMemberIdSet +
                 "} " + super.toString();
     }
 
@@ -83,8 +83,8 @@ public class Channel extends Entity
                 case "channelOptionMap":
                     this.channelOptionMap = ChannelOptionMap.fromJson(value);
                     break;
-                case "channelMemberIdList":
-                    this.channelMemberIdList = ChannelMemberIdList.fromJson(value);
+                case "channelMemberIdSet":
+                    this.channelMemberIdSet = ChannelMemberIdSet.fromJson(value);
                     break;
                 default:
                     throw new RuntimeException("Undefined field:" + nameValue.getName());
