@@ -18,7 +18,7 @@ public class UserMapStore implements UserStore
     @Override
     public User retrieveByEmail(String email)
     {
-        return this.userMap.values().stream().filter(user -> user.getEmail().equals(email)).findFirst().get();
+        return this.userMap.values().stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
     }
 
     @Override

@@ -1,6 +1,11 @@
 package com.spectra.board.service;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.spectra.board.domain.entity.Channel;
+import com.spectra.board.domain.entity.User;
+import com.spectra.board.domain.granule.UserType;
 import com.spectra.board.domain.logic.ChannelLogic;
 import com.spectra.board.domain.logic.UserLogic;
 import org.junit.Before;
@@ -10,11 +15,33 @@ public class BoardTest
 {
     private ChannelLogic channelLogic;
     private UserLogic userLogic;
+
     @Before
     public void setup()
     {
         this.userLogic = new UserJavaLogic();
         this.channelLogic = new ChannelJavaLogic();
+
+        initUser();
+    }
+
+    private void initUser()
+    {
+        List<User> users = Arrays.asList(
+                new User(UserType.ADMIN, "이정호", "010-2002-0014", "leejh@spectra.co.kr"),
+                new User(UserType.MANAGER, "홍길동", "010-1234-5678", "hong@spectra.co.kr"),
+                new User(UserType.MANAGER, "김좌진", "010-5678-1234", "kim@spectra.co.kr"),
+                new User(UserType.USER, "문재인", "010-5678-4321", "moon@spectra.co.kr"),
+                new User(UserType.USER, "안철수", "010-1234-6789", "ahn@spectra.co.kr"),
+                new User(UserType.USER, "세종대왕", "010-0123-4567", "se@spectra.co.kr"),
+                new User(UserType.USER, "이순신", "010-9012-3456", "lee@spectra.co.kr"),
+                new User(UserType.USER, "김건모", "010-8901-2345", "kimo@spectra.co.kr"),
+                new User(UserType.USER, "아이유", "010-7890-1234", "iu@spectra.co.kr")
+        );
+        for (User user : users)
+        {
+            this.userLogic.regist(user);
+        }
     }
 
     @Test
