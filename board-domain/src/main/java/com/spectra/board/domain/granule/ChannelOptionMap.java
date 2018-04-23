@@ -3,6 +3,9 @@ package com.spectra.board.domain.granule;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.reflect.TypeToken;
+import com.spectra.share.util.JsonUtil;
+
 public class ChannelOptionMap
 {
     private Map<ChannelOptionKey, String> channelOptionMap;
@@ -24,6 +27,19 @@ public class ChannelOptionMap
 
     public static ChannelOptionMap fromJson(String value)
     {
-        return null;
+        return JsonUtil.fromJson(value, new TypeToken<Map<ChannelOptionKey, String>>() {}.getType());
+    }
+
+    public static String toJson(Map<ChannelOptionKey, String> channelOptionMap)
+    {
+        return JsonUtil.toJson(channelOptionMap);
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ChannelOptionMap{" +
+                "channelOptionMap=" + channelOptionMap +
+                '}';
     }
 }

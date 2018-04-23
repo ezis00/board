@@ -1,5 +1,8 @@
 package com.spectra.board.domain.entity;
 
+import com.spectra.board.domain.granule.ChannelOptionMap;
+import com.spectra.board.domain.granule.NameValue;
+import com.spectra.board.domain.granule.NameValueList;
 import com.spectra.board.domain.granule.UserType;
 
 public class User extends Entity
@@ -100,5 +103,26 @@ public class User extends Entity
                 ", joinDate=" + joinDate +
                 ", loginCount=" + loginCount +
                 '}';
+    }
+
+    public void setValues(NameValueList nameValueList)
+    {
+        for (NameValue nameValue : nameValueList.getList())
+        {
+            String value = nameValue.getValue();
+            switch (nameValue.getName())
+            {
+                case "userType":
+                    this.userType = UserType.fromJson(value);
+                    break;
+                case "name":
+                    this.name = name;
+                    break;
+                case "phone":
+                    this.phone = phone;
+                    break;
+            }
+        }
+
     }
 }

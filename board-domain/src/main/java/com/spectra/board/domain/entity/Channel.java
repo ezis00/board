@@ -1,10 +1,8 @@
 package com.spectra.board.domain.entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import com.spectra.board.domain.granule.ChannelMemberIdList;
 import com.spectra.board.domain.granule.ChannelOptionKey;
 import com.spectra.board.domain.granule.ChannelOptionMap;
 import com.spectra.board.domain.granule.NameValue;
@@ -14,7 +12,7 @@ public class Channel extends Entity
 {
     private String title;
     private ChannelOptionMap channelOptionMap;
-    private List<String> memberUserIdList;
+    private ChannelMemberIdList channelMemberIdList;
 
     public Channel()
     {
@@ -24,7 +22,7 @@ public class Channel extends Entity
     {
         this.title = title;
         this.channelOptionMap = new ChannelOptionMap();
-        this.memberUserIdList = new ArrayList<String>();
+        this.channelMemberIdList = new ChannelMemberIdList();
     }
 
     public String getTitle()
@@ -47,14 +45,29 @@ public class Channel extends Entity
         this.channelOptionMap.put(channelOptionKey, value);
     }
 
-    public List<String> getMemberUserIdList()
+    public List<String> getMemberIdList()
     {
-        return memberUserIdList;
+        return channelMemberIdList.getAll();
     }
 
-    public void setMemberUserIdList(List<String> memberUserIdList)
+    public void addMemberId(String memberId)
     {
-        this.memberUserIdList = memberUserIdList;
+        this.channelMemberIdList.add(memberId);
+    }
+
+    public void setMemberIdList(ChannelMemberIdList channelMemberIdList)
+    {
+        this.channelMemberIdList = channelMemberIdList;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Channel{" +
+                "title='" + title + '\'' +
+                ", channelOptionMap=" + channelOptionMap +
+                ", channelMemberIdList=" + channelMemberIdList +
+                "} " + super.toString();
     }
 
     public void setValues(NameValueList nameValueList)
@@ -70,17 +83,12 @@ public class Channel extends Entity
                 case "channelOptionMap":
                     this.channelOptionMap = ChannelOptionMap.fromJson(value);
                     break;
+                case "channelMemberIdList":
+                    this.channelMemberIdList = ChannelMemberIdList.fromJson(value);
+                    break;
+                default:
+                    throw new RuntimeException("Undefined field:" + nameValue.getName());
             }
         }
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Channel{" +
-                "title='" + title + '\'' +
-                ", channelOptionMap=" + channelOptionMap +
-                ", memberUserIdList=" + memberUserIdList +
-                "} " + super.toString();
     }
 }
