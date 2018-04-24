@@ -2,41 +2,40 @@ package com.spectra.board.store.map;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.store.UserStore;
 
 public class UserMapStore implements UserStore
 {
-    private Map<String, User> userMap;
+    private Map<String, User> map;
 
     public UserMapStore()
     {
-        this.userMap = new HashMap<>();
+        this.map = new HashMap<>();
     }
 
     @Override
     public User retrieveByEmail(String email)
     {
-        return this.userMap.values().stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
+        return this.map.values().stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
     }
 
     @Override
     public void create(User user)
     {
-        this.userMap.put(user.getId(), user);
+        this.map.put(user.getId(), user);
     }
 
     @Override
     public User retrieve(String userId)
     {
-        return this.userMap.get(userId);
+        return this.map.get(userId);
     }
 
     @Override
     public void update(User user)
     {
-        this.userMap.put(user.getId(), user);
+        this.map.put(user.getId(), user);
     }
 }

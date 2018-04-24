@@ -6,12 +6,12 @@ public abstract class Entity
 {
     private final String id;
 
-    public Entity()
+    protected Entity()
     {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Entity(String id)
+    protected Entity(String id)
     {
         this.id = id;
     }

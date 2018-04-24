@@ -8,28 +8,28 @@ import com.spectra.board.domain.store.PostStore;
 
 public class PostMapStore implements PostStore
 {
-    private Map<String, Post> postMap;
+    private Map<String, Post> map;
 
     public PostMapStore()
     {
-        this.postMap = new HashMap<>();
+        this.map = new HashMap<>();
     }
 
     @Override
     public void create(Post post)
     {
-        this.postMap.put(post.getId(), post);
+        this.map.put(post.getId(), post);
     }
 
     @Override
     public Post retrieve(String postId)
     {
-        return this.postMap.get(postId);
+        return this.map.get(postId);
     }
 
     @Override
     public void update(Post post)
     {
-        this.postMap.put(post.getId(), post);
+        this.map.put(post.getId(), post);
     }
 }

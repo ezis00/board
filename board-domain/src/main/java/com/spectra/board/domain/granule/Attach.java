@@ -2,8 +2,8 @@ package com.spectra.board.domain.granule;
 
 public class Attach
 {
-    private AttachType attachType;
-    private String attachId;
+    private final AttachType attachType;
+    private final String attachId;
 
     public Attach(AttachType attachType, String attachId)
     {
@@ -16,19 +16,9 @@ public class Attach
         return attachType;
     }
 
-    public void setAttachType(AttachType attachType)
-    {
-        this.attachType = attachType;
-    }
-
     public String getAttachId()
     {
         return attachId;
-    }
-
-    public void setAttachId(String attachId)
-    {
-        this.attachId = attachId;
     }
 
     @Override

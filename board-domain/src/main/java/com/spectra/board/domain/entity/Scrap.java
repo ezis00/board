@@ -1,20 +1,18 @@
 package com.spectra.board.domain.entity;
 
 import com.spectra.board.domain.granule.PostInfo;
-import com.spectra.board.domain.granule.PostType;
-import com.spectra.board.domain.granule.VoteType;
 
-public class Vote extends Entity
+public class Scrap extends Entity
 {
     private final PostInfo postInfo;
-    private final VoteType voteType;
+    private final String userId;
     private final long date;
 
-    public Vote(PostInfo postInfo, VoteType voteType)
+    public Scrap(PostInfo postInfo, String userId, long date)
     {
         this.postInfo = postInfo;
-        this.voteType = voteType;
-        this.date = System.currentTimeMillis();
+        this.userId = userId;
+        this.date = date;
     }
 
     public PostInfo getPostInfo()
@@ -22,9 +20,9 @@ public class Vote extends Entity
         return postInfo;
     }
 
-    public VoteType getVoteType()
+    public String getUserId()
     {
-        return voteType;
+        return userId;
     }
 
     public long getDate()
@@ -35,9 +33,9 @@ public class Vote extends Entity
     @Override
     public String toString()
     {
-        return "Vote{" +
+        return "Scrap{" +
                 "postInfo=" + postInfo +
-                ", voteType=" + voteType +
+                ", userId='" + userId + '\'' +
                 ", date=" + date +
                 "} " + super.toString();
     }

@@ -3,44 +3,33 @@ package com.spectra.board.domain.entity;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.spectra.board.domain.granule.Level;
 import com.spectra.board.domain.granule.NotifyOptionKey;
+import com.spectra.board.domain.granule.PostInfo;
 
 public class Notify extends Entity
 {
-    private String boardId;
-    private String startDate;
-    private String endDate;
-    private List<Level> levelList;
-    private Map<NotifyOptionKey, String> notifyOptionMap;
+    private final PostInfo parentPostInfo;
+    private final String startDate;
+    private final String endDate;
+    private final List<Level> levelList;
+    private final Map<NotifyOptionKey, String> notifyOptionMap;
 
-    public Notify()
+    public Notify(PostInfo parentPostInfo, String startDate, String endDate, List<Level> levelList)
     {
-    }
-
-    public Notify(String id)
-    {
-        super(id);
-    }
-
-    public Notify(String boardId, String startDate, String endDate, List<Level> levelList)
-    {
-        this.boardId = boardId;
+        super();
+        this.parentPostInfo = parentPostInfo;
         this.startDate = startDate;
         this.endDate = endDate;
         this.levelList = levelList;
-        this.notifyOptionMap = new HashMap<NotifyOptionKey, String>();
+        this.notifyOptionMap = new HashMap<>();
     }
 
-    public String getBoardId()
+    public PostInfo getParentPostInfo()
     {
-        return boardId;
-    }
-
-    public void setBoardId(String boardId)
-    {
-        this.boardId = boardId;
+        return parentPostInfo;
     }
 
     public String getStartDate()
@@ -48,19 +37,9 @@ public class Notify extends Entity
         return startDate;
     }
 
-    public void setStartDate(String startDate)
-    {
-        this.startDate = startDate;
-    }
-
     public String getEndDate()
     {
         return endDate;
-    }
-
-    public void setEndDate(String endDate)
-    {
-        this.endDate = endDate;
     }
 
     public List<Level> getLevelList()
@@ -68,29 +47,19 @@ public class Notify extends Entity
         return levelList;
     }
 
-    public void setLevelList(List<Level> levelList)
-    {
-        this.levelList = levelList;
-    }
-
     public void addNotifyOption(NotifyOptionKey notifyOptionKey, String value){
         this.notifyOptionMap.put(notifyOptionKey, value);
-    }
-
-    public String getNotifyOption(NotifyOptionKey notifyOptionKey)
-    {
-        return this.notifyOptionMap.get(notifyOptionKey);
     }
 
     @Override
     public String toString()
     {
         return "Notify{" +
-                "boardId='" + boardId + '\'' +
+                "parentPostInfo=" + parentPostInfo +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", levelList=" + levelList +
                 ", notifyOptionMap=" + notifyOptionMap +
-                '}';
+                "} " + super.toString();
     }
 }

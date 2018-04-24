@@ -4,45 +4,39 @@ import java.util.Optional;
 
 import com.spectra.board.domain.granule.NameValue;
 import com.spectra.board.domain.granule.NameValueList;
-import com.spectra.board.domain.granule.ParentPost;
+import com.spectra.board.domain.granule.PostInfo;
+import com.spectra.board.domain.granule.PostType;
 
 public abstract class Post extends Entity
 {
-    private Optional<ParentPost> parentPost;
+    private final Optional<PostInfo> parentPostInfo;
     private String contents;
     private long postDate;
-    private String writeUserId;
+    private final String writeUserId;
 
-    protected Post()
+    protected Post(String writeUserId)
     {
+        this(null, writeUserId);
     }
 
-    protected Post(String id)
+    protected Post(PostInfo parentPostInfo, String writeUserId)
     {
-        super(id);
-    }
-
-    protected Post(String contents, String writeUserId)
-    {
-        this(null, contents, writeUserId);
-    }
-
-    protected Post(ParentPost parentPost, String contents, String writeUserId)
-    {
-        this.parentPost = Optional.ofNullable(parentPost);
-        this.contents = contents;
+        super();
+        this.parentPostInfo = Optional.ofNullable(parentPostInfo);
         this.writeUserId = writeUserId;
         this.postDate = System.currentTimeMillis();
     }
 
-    public Optional<ParentPost> getParentPost()
+    public abstract PostType getPostType();
+
+    public PostInfo getCurrentPostInfo()
     {
-        return parentPost;
+        return new PostInfo(getPostType(), getId());
     }
 
-    public void setParentPost(ParentPost parentPost)
+    public Optional<PostInfo> getParentPostInfo()
     {
-        this.parentPost = Optional.ofNullable(parentPost);
+        return parentPostInfo;
     }
 
     public String getContents()
@@ -70,17 +64,11 @@ public abstract class Post extends Entity
         return writeUserId;
     }
 
-    public void setWriteUserId(String writeUserId)
-    {
-        this.writeUserId = writeUserId;
-    }
-
-
     @Override
     public String toString()
     {
         return "Post{" +
-                "parentPost=" + parentPost +
+                "parentPostInfo=" + parentPostInfo +
                 ", contents='" + contents + '\'' +
                 ", postDate=" + postDate +
                 ", writeUserId='" + writeUserId + '\'' +
@@ -99,9 +87,6 @@ public abstract class Post extends Entity
                     break;
                 case "postDate":
                     this.postDate = Long.parseLong(value);
-                    break;
-                case "writeUserId":
-                    this.writeUserId = value;
                     break;
                 default:
                     throw new RuntimeException("Undefined field:" + nameValue.getName());

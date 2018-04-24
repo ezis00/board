@@ -1,32 +1,32 @@
 package com.spectra.board.domain.granule;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.spectra.share.util.JsonUtil;
 
 public class BoardAttachSet
 {
-    private List<Attach> attachList;
+    private Set<Attach> attachList;
 
     public BoardAttachSet()
     {
-        this.attachList = new ArrayList<>();
+        this.attachList = new HashSet<>();
     }
 
-    public BoardAttachSet(List<Attach> attachList)
+    public BoardAttachSet(Set<Attach> attachList)
     {
         this.attachList = attachList;
     }
 
-    public List<Attach> getAll()
+    public Set<Attach> getAll()
     {
         return this.attachList;
     }
 
-    public void add(Attach memberId)
+    public void add(Attach attach)
     {
-        this.attachList.add(memberId);
+        this.attachList.add(attach);
     }
 
     public static BoardAttachSet fromJson(String value)

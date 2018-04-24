@@ -10,16 +10,13 @@ import com.spectra.board.domain.granule.NameValueList;
 
 public class Channel extends Entity
 {
-    private String title;
+    private final String title;
     private ChannelOptionMap channelOptionMap;
     private ChannelMemberIdSet channelMemberIdSet;
 
-    public Channel()
-    {
-    }
-
     public Channel(String title)
     {
+        super();
         this.title = title;
         this.channelOptionMap = new ChannelOptionMap();
         this.channelMemberIdSet = new ChannelMemberIdSet();
@@ -30,17 +27,12 @@ public class Channel extends Entity
         return title;
     }
 
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-
-    public String getChannelOption(ChannelOptionKey channelOptionKey)
+    public String getOption(ChannelOptionKey channelOptionKey)
     {
         return this.channelOptionMap.get(channelOptionKey);
     }
 
-    public void addChannelOption(ChannelOptionKey channelOptionKey, String value)
+    public void addOption(ChannelOptionKey channelOptionKey, String value)
     {
         this.channelOptionMap.put(channelOptionKey, value);
     }
@@ -77,9 +69,6 @@ public class Channel extends Entity
             String value = nameValue.getValue();
             switch (nameValue.getName())
             {
-                case "title":
-                    this.title = value;
-                    break;
                 case "channelOptionMap":
                     this.channelOptionMap = ChannelOptionMap.fromJson(value);
                     break;

@@ -2,22 +2,14 @@ package com.spectra.board.domain.entity;
 
 public class SurveyResult extends Entity
 {
-    private String surveyId;
-    private String userId;
-    private String answerContents;
-    private long date;
-
-    public SurveyResult()
-    {
-    }
-
-    public SurveyResult(String id)
-    {
-        super(id);
-    }
+    private final String surveyId;
+    private final String userId;
+    private final String answerContents;
+    private final long date;
 
     public SurveyResult(String surveyId, String userId, String answerContents)
     {
+        super();
         this.surveyId = surveyId;
         this.userId = userId;
         this.answerContents = answerContents;
@@ -29,19 +21,9 @@ public class SurveyResult extends Entity
         return surveyId;
     }
 
-    public void setSurveyId(String surveyId)
-    {
-        this.surveyId = surveyId;
-    }
-
     public String getUserId()
     {
         return userId;
-    }
-
-    public void setUserId(String userId)
-    {
-        this.userId = userId;
     }
 
     public String getAnswerContents()
@@ -49,19 +31,9 @@ public class SurveyResult extends Entity
         return answerContents;
     }
 
-    public void setAnswerContents(String answerContents)
-    {
-        this.answerContents = answerContents;
-    }
-
     public long getDate()
     {
         return date;
-    }
-
-    public void setDate(long date)
-    {
-        this.date = date;
     }
 
     @Override

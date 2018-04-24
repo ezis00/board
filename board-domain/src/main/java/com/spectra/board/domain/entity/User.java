@@ -10,20 +10,12 @@ public class User extends Entity
     private String name;
     private String phone;
     private String email;
-    private long joinDate;
+    private final long joinDate;
     private int loginCount;
-
-    public User()
-    {
-    }
-
-    public User(String id)
-    {
-        super(id);
-    }
 
     public User(UserType userType, String name, String phone, String email)
     {
+        super();
         this.userType = userType;
         this.name = name;
         this.phone = phone;
@@ -77,11 +69,6 @@ public class User extends Entity
         return joinDate;
     }
 
-    public void setJoinDate(long joinDate)
-    {
-        this.joinDate = joinDate;
-    }
-
     public int getLoginCount()
     {
         return loginCount;
@@ -122,9 +109,6 @@ public class User extends Entity
                     break;
                 case "email":
                     this.email = value;
-                    break;
-                case "joinDate":
-                    this.joinDate = Long.parseLong(value);
                     break;
                 case "loginCount":
                     this.loginCount = Integer.parseInt(value);

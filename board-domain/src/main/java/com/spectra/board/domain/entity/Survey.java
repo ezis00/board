@@ -1,32 +1,44 @@
 package com.spectra.board.domain.entity;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import com.spectra.board.domain.granule.PostInfo;
+import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.granule.SurveyAnswer;
+import com.spectra.board.domain.granule.SurveyAnswerSet;
 import com.spectra.board.domain.granule.SurveyOptionKey;
+import com.spectra.board.domain.granule.SurveyOptionMap;
 
 public class Survey extends Post
 {
+    private final PostType postType = PostType.SURVEY;
     private String title;
-    private SurveyOptionKey surveyOptionKey;
-    private List<SurveyAnswer> surveyAnswerList;
+    private SurveyAnswerSet answerSet;
+    private SurveyOptionMap optionMap;
     private long expiredDate;
 
-    public Survey()
+    public Survey(PostInfo parentPostInfo, String title, SurveyOptionMap optionMap, SurveyAnswerSet answerSet, long expiredDate, String writeUserId)
     {
-    }
-
-    public Survey(String id)
-    {
-        super(id);
-    }
-
-    public Survey(SurveyOptionKey surveyOptionKey, String title, String contents, String writeUserId, long expiredDate)
-    {
-        super(contents, writeUserId);
-        this.surveyOptionKey = surveyOptionKey;
+        super(parentPostInfo, writeUserId);
         this.title = title;
+        this.optionMap = optionMap;
+        this.answerSet = answerSet;
         this.expiredDate = expiredDate;
+        StringBuilder builder = new StringBuilder();
+        for (Map.Entry<SurveyOptionKey, String> entry : optionMap.getAll().entrySet())
+        {
+            builder.append(entry.getKey().toString());
+            builder.append("\t:\t");
+            builder.append(entry.getValue());
+        }
+        setContents(builder.toString());
+    }
+
+    @Override
+    public PostType getPostType()
+    {
+        return this.postType;
     }
 
     public String getTitle()
@@ -39,24 +51,24 @@ public class Survey extends Post
         this.title = title;
     }
 
-    public SurveyOptionKey getSurveyOptionKey()
+    public void addOption(SurveyOptionKey surveyOptionKey, String value)
     {
-        return surveyOptionKey;
+        this.optionMap.put(surveyOptionKey, value);
     }
 
-    public void setSurveyOptionKey(SurveyOptionKey surveyOptionKey)
+    public String getOption(SurveyOptionKey surveyOptionKey)
     {
-        this.surveyOptionKey = surveyOptionKey;
+        return optionMap.get(surveyOptionKey);
     }
 
-    public void addSurveyAnswer(SurveyAnswer surveyAnswer)
+    public void addAnswer(SurveyAnswer surveyAnswer)
     {
-        this.surveyAnswerList.add(surveyAnswer);
+        this.answerSet.add(surveyAnswer);
     }
 
-    public List<SurveyAnswer> getSurveyAnswerList()
+    public Set<SurveyAnswer> getSet()
     {
-        return surveyAnswerList;
+        return answerSet.getAll();
     }
 
     public long getExpiredDate()
@@ -74,8 +86,8 @@ public class Survey extends Post
     {
         return "Survey{" +
                 "title='" + title + '\'' +
-                ", surveyOptionKey=" + surveyOptionKey +
-                ", surveyAnswerList=" + surveyAnswerList +
+                ", answerSet=" + answerSet +
+                ", optionMap=" + optionMap +
                 ", expiredDate=" + expiredDate +
                 "} " + super.toString();
     }

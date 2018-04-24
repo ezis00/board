@@ -1,6 +1,5 @@
 package com.spectra.board.domain.entity;
 
-import java.util.List;
 import java.util.Set;
 
 import com.spectra.board.domain.granule.Attach;
@@ -11,10 +10,13 @@ import com.spectra.board.domain.granule.BoardTagIdSet;
 import com.spectra.board.domain.granule.BoardViewerIdSet;
 import com.spectra.board.domain.granule.NameValue;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.granule.PostInfo;
+import com.spectra.board.domain.granule.PostType;
 
 public class Board extends Post
 {
-    private String channelId;
+    private final PostType postType = PostType.BOARD;
+    private final String channelId;
     private String title;
     private BoardOptionMap optionMap;
     private BoardAttachSet attachSet;
@@ -22,20 +24,15 @@ public class Board extends Post
     private BoardTagIdSet tagIdSet;
     private int viewCount;
 
-    public Board()
+    public Board(String channelId, String writeUserId)
     {
+        this(null, channelId, writeUserId);
     }
 
-    public Board(String id)
+    public Board(PostInfo parentPostInfo, String writeUserId, String channelId)
     {
-        super(id);
-    }
-
-    public Board(String channelId, String title, String contents, String writeUserId)
-    {
-        super(contents, writeUserId);
+        super(parentPostInfo, writeUserId);
         this.channelId = channelId;
-        this.title = title;
         this.optionMap = new BoardOptionMap();
         this.attachSet = new BoardAttachSet();
         this.viewerIdSet = new BoardViewerIdSet();
@@ -43,14 +40,15 @@ public class Board extends Post
         this.viewCount = 0;
     }
 
+    @Override
+    public PostType getPostType()
+    {
+        return this.postType;
+    }
+
     public String getChannelId()
     {
         return channelId;
-    }
-
-    public void setChannelId(String channelId)
-    {
-        this.channelId = channelId;
     }
 
     public String getTitle()
@@ -78,18 +76,18 @@ public class Board extends Post
         this.attachSet.add(attach);
     }
 
-    public List<Attach> getAttachList()
+    public Set<Attach> getAttachSet()
     {
         return attachSet.getAll();
     }
 
-    public void addViewUserId(String viewUserId)
+    public void addViewerId(String viewUserId)
     {
         this.viewerIdSet.add(viewUserId);
         this.viewCount++;
     }
 
-    public Set<String> getViewUserIdSet()
+    public Set<String> getViewerIdSet()
     {
         return viewerIdSet.getAll();
     }
@@ -136,14 +134,23 @@ public class Board extends Post
             String value = nameValue.getValue();
             switch (nameValue.getName())
             {
-                case "channelId":
-                    this.channelId = value;
-                    break;
                 case "title":
                     this.title = value;
                     break;
                 case "optionMap":
                     this.optionMap = BoardOptionMap.fromJson(value);
+                    break;
+                case "attachSet":
+                    this.attachSet = BoardAttachSet.fromJson(value);
+                    break;
+                case "viewerIdSet":
+                    this.viewerIdSet = BoardViewerIdSet.fromJson(value);
+                    break;
+                case "tagIdSet":
+                    this.tagIdSet = BoardTagIdSet.fromJson(value);
+                    break;
+                case "viewCount":
+                    this.viewCount = Integer.parseInt(value);
                     break;
                 default:
                     super.setValues(nameValueList);
