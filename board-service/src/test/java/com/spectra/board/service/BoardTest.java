@@ -30,9 +30,13 @@ import com.spectra.board.domain.logic.UserLogic;
 import com.spectra.share.util.TimeUtil;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BoardTest
 {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private UserLogic userLogic;
     private ChannelLogic channelLogic;
     private PostLogic postLogic;
@@ -71,7 +75,7 @@ public class BoardTest
     }
 
     @Test
-    public void channelTest()
+    public void test()
     {
         Channel channel = new Channel("영업 비밀");
         channel.setMemberIdSet(new ChannelMemberIdSet(users.subList(0, 5).stream().map(Entity::getId).collect(Collectors.toSet())));
@@ -83,8 +87,7 @@ public class BoardTest
 
         surveyBoard(channel.getId());
         noticeBoard(channel.getId());
-
-
+        privateBoard(channel.getId());
     }
 
     private void surveyBoard(String channelId)

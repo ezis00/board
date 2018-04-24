@@ -4,9 +4,13 @@ import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.granule.NameValueList;
 import com.spectra.board.domain.spec.UserService;
 import com.spectra.board.domain.store.UserStore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UserLogic implements UserService
 {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     private UserStore userStore;
 
     public UserLogic(UserStore userStore)
@@ -17,7 +21,7 @@ public class UserLogic implements UserService
     @Override
     public String register(User user)
     {
-        if (userStore.retrieveByEmail(user.getEmail()) == null)
+        if (userStore.retrieveByEmail(user.getEmail()) != null)
         {
             throw new RuntimeException("Already Exist title:" + user.getEmail());
         }
