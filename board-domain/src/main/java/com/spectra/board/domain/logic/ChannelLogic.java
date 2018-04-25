@@ -17,9 +17,9 @@ public class ChannelLogic implements ChannelService
     @Override
     public String register(Channel channel)
     {
-        if (channelStore.retrieveByTitle(channel.getTitle()) != null)
+        if (channelStore.retrieveByTitle(channel.getName()) != null)
         {
-            throw new RuntimeException("Already Exist title:" + channel.getTitle());
+            throw new RuntimeException("Already Exist title:" + channel.getName());
         }
         channelStore.create(channel);
         return channel.getId();

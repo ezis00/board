@@ -18,7 +18,7 @@ public class ChannelMapStore implements ChannelStore
     @Override
     public Channel retrieveByTitle(String title)
     {
-        return this.map.values().stream().filter(channel -> channel.getTitle().equals(title)).findFirst().orElse(null);
+        return this.map.values().stream().filter(channel -> channel.getName().equals(title)).findFirst().orElse(null);
     }
 
     @Override

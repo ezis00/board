@@ -25,7 +25,6 @@ import com.spectra.board.domain.granule.SurveyOptionMap;
 import com.spectra.board.domain.granule.UserType;
 import com.spectra.board.domain.logic.ChannelLogic;
 import com.spectra.board.domain.logic.NotifyLogic;
-import com.spectra.board.domain.logic.PostLogic;
 import com.spectra.board.domain.logic.UserLogic;
 import com.spectra.share.util.TimeUtil;
 import org.junit.Before;
@@ -88,6 +87,8 @@ public class BoardTest
         surveyBoard(channel.getId());
         noticeBoard(channel.getId());
         privateBoard(channel.getId());
+
+        postLogic.findByChannelName(channel.getName());
     }
 
     private void surveyBoard(String channelId)
@@ -160,7 +161,7 @@ public class BoardTest
         postLogic.register(board);
     }
 
-    public void privateBoard(String channelId)
+    private void privateBoard(String channelId)
     {
         User admin = users.get(0);
         Board board = new Board(channelId, admin.getId());

@@ -7,24 +7,31 @@ import com.spectra.board.domain.granule.ChannelOptionKey;
 import com.spectra.board.domain.granule.ChannelOptionMap;
 import com.spectra.board.domain.granule.NameValue;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.granule.PostType;
 
 public class Channel extends Entity
 {
-    private final String title;
+    private final PostType postType = PostType.CHANNEL;
+    private final String name;
     private ChannelOptionMap channelOptionMap;
     private ChannelMemberIdSet channelMemberIdSet;
 
-    public Channel(String title)
+    public Channel(String name)
     {
         super();
-        this.title = title;
+        this.name = name;
         this.channelOptionMap = new ChannelOptionMap();
         this.channelMemberIdSet = new ChannelMemberIdSet();
     }
 
-    public String getTitle()
+    public PostType getPostType()
     {
-        return title;
+        return postType;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
     public String getOption(ChannelOptionKey channelOptionKey)
@@ -56,7 +63,7 @@ public class Channel extends Entity
     public String toString()
     {
         return "Channel{" +
-                "title='" + title + '\'' +
+                "name='" + name + '\'' +
                 ", channelOptionMap=" + channelOptionMap +
                 ", channelMemberIdSet=" + channelMemberIdSet +
                 "} " + super.toString();

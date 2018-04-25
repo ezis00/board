@@ -1,5 +1,6 @@
 package com.spectra.board.domain.entity;
 
+import java.util.Optional;
 import java.util.Set;
 
 import com.spectra.board.domain.granule.Attach;
@@ -13,26 +14,31 @@ import com.spectra.board.domain.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 
-public class Board extends Post
+public class Board extends Entity
 {
     private final PostType postType = PostType.BOARD;
-    private final String channelId;
+    private final Optional<PostInfo> parentPostInfo;
+    private final String writerId;
+    private final long postDate;
     private String title;
+    private String contents;
+    private long lastUpdateDate;
     private BoardOptionMap optionMap;
     private BoardAttachSet attachSet;
     private BoardViewerIdSet viewerIdSet;
     private BoardTagIdSet tagIdSet;
     private int viewCount;
 
-    public Board(String channelId, String writeUserId)
+    public Board(String writerId)
     {
-        this(null, channelId, writeUserId);
+        this(null, writerId);
     }
 
-    public Board(PostInfo parentPostInfo, String writeUserId, String channelId)
+    public Board(PostInfo parentPostInfo, String writerId)
     {
-        super(parentPostInfo, writeUserId);
-        this.channelId = channelId;
+        this.parentPostInfo = Optional.ofNullable(parentPostInfo);
+        this.writerId = writerId;
+        this.postDate = System.currentTimeMillis();
         this.optionMap = new BoardOptionMap();
         this.attachSet = new BoardAttachSet();
         this.viewerIdSet = new BoardViewerIdSet();
@@ -40,15 +46,49 @@ public class Board extends Post
         this.viewCount = 0;
     }
 
-    @Override
     public PostType getPostType()
     {
         return this.postType;
     }
 
-    public String getChannelId()
+    public PostInfo getCurrentPostInfo()
     {
-        return channelId;
+        return new PostInfo(getPostType(), getId());
+    }
+
+    public Optional<PostInfo> getParentPostInfo()
+    {
+        return parentPostInfo;
+    }
+
+    public String getContents()
+    {
+        return contents;
+    }
+
+    public void setContents(String contents)
+    {
+        this.contents = contents;
+    }
+
+    public long getLastUpdateDate()
+    {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(long lastUpdateDate)
+    {
+        this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public long getPostDate()
+    {
+        return postDate;
+    }
+
+    public String getWriterId()
+    {
+        return writerId;
     }
 
     public String getTitle()
@@ -112,12 +152,17 @@ public class Board extends Post
         this.viewCount = viewCount;
     }
 
+
     @Override
     public String toString()
     {
         return "Board{" +
-                "channelId='" + channelId + '\'' +
+                "postType=" + postType +
+                ", parentPostInfo=" + parentPostInfo +
+                ", writerId='" + writerId + '\'' +
                 ", title='" + title + '\'' +
+                ", contents='" + contents + '\'' +
+                ", postDate=" + postDate +
                 ", optionMap=" + optionMap +
                 ", attachSet=" + attachSet +
                 ", viewerIdSet=" + viewerIdSet +
@@ -126,9 +171,9 @@ public class Board extends Post
                 "} " + super.toString();
     }
 
-    @Override
     public void setValues(NameValueList nameValueList)
     {
+        this.lastUpdateDate = System.currentTimeMillis();
         for (NameValue nameValue : nameValueList.getList())
         {
             String value = nameValue.getValue();
@@ -152,8 +197,11 @@ public class Board extends Post
                 case "viewCount":
                     this.viewCount = Integer.parseInt(value);
                     break;
+                case "contents":
+                    this.contents = value;
+                    break;
                 default:
-                    super.setValues(nameValueList);
+                    throw new RuntimeException("Undefined field:" + nameValue.getName());
             }
         }
     }

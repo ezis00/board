@@ -1,7 +1,6 @@
 package com.spectra.board.domain.entity;
 
 import com.spectra.board.domain.granule.PostInfo;
-import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.granule.VoteType;
 
 public class Vote extends Entity

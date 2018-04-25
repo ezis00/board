@@ -1,16 +1,14 @@
 package com.spectra.board.store.map;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import com.spectra.board.domain.entity.Post;
-import com.spectra.board.domain.store.PostStore;
-
-public class PostMapStore implements PostStore
+public class SurveyMapStore implements PostStore
 {
     private Map<String, Post> map;
 
-    public PostMapStore()
+    public SurveyMapStore()
     {
         this.map = new HashMap<>();
     }
@@ -25,6 +23,12 @@ public class PostMapStore implements PostStore
     public Post retrieve(String postId)
     {
         return this.map.get(postId);
+    }
+
+    @Override
+    public List<Post> retrieveByChannelName(String channelName)
+    {
+        return this.map.values().stream().filter(channel -> ch);
     }
 
     @Override

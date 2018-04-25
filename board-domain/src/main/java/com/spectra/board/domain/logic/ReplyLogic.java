@@ -1,15 +1,14 @@
 package com.spectra.board.domain.logic;
 
-import com.spectra.board.domain.entity.Post;
-import com.spectra.board.domain.granule.NameValueList;
-import com.spectra.board.domain.spec.PostService;
-import com.spectra.board.domain.store.PostStore;
+import java.util.List;
 
-public class PostLogic implements PostService
+import com.spectra.board.domain.granule.NameValueList;
+
+public class ReplyLogic implements PostService
 {
     private PostStore postStore;
 
-    public PostLogic(PostStore postStore)
+    public ReplyLogic(PostStore postStore)
     {
         this.postStore = postStore;
     }
@@ -25,6 +24,12 @@ public class PostLogic implements PostService
     public Post find(String postId)
     {
         return postStore.retrieve(postId);
+    }
+
+    @Override
+    public List<Post> findByChannelName(String channelName)
+    {
+        return postStore.retrieveByChannelName(channelName);
     }
 
     @Override
