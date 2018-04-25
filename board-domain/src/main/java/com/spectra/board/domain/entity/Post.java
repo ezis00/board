@@ -18,9 +18,9 @@ public abstract class Post extends Entity
         this.postDate = System.currentTimeMillis();
     }
 
-    public Optional<PostInfo> getParentPostInfo()
+    public PostInfo getParentPostInfo()
     {
-        return parentPostInfo;
+        return parentPostInfo.orElse(null);
     }
 
     public String getWriterId()

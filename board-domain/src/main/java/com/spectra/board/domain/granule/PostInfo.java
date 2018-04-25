@@ -29,4 +29,24 @@ public class PostInfo
                 ", postId='" + postId + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PostInfo postInfo = (PostInfo) o;
+
+        if (postType != postInfo.postType) return false;
+        return postId != null ? postId.equals(postInfo.postId) : postInfo.postId == null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = postType != null ? postType.hashCode() : 0;
+        result = 31 * result + (postId != null ? postId.hashCode() : 0);
+        return result;
+    }
 }

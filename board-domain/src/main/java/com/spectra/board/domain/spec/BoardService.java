@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spectra.board.domain.entity.Board;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.granule.PostInfo;
 
 public interface BoardService
 {
@@ -12,4 +13,6 @@ public interface BoardService
     Board find(String boardId);
 
     void modify(String boardId, NameValueList nameValueList);
+
+    List<Board> findByParentPostInfo(PostInfo postInfo);
 }

@@ -26,6 +26,8 @@ public class Channel extends Post
     {
         super(parentPostInfo, writerId);
         this.name = name;
+        this.channelOptionMap = new ChannelOptionMap();
+        this.channelMemberIdSet = new ChannelMemberIdSet();
     }
 
     public PostType getPostType()

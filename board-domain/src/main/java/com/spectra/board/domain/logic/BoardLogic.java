@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spectra.board.domain.entity.Board;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.spec.BoardService;
 import com.spectra.board.domain.store.BoardStore;
 
@@ -35,5 +36,11 @@ public class BoardLogic implements BoardService
         Board board = find(boardId);
         board.setValues(nameValueList);
         boardStore.update(board);
+    }
+
+    @Override
+    public List<Board> findByParentPostInfo(PostInfo postInfo)
+    {
+        return boardStore.retrieveByParentPostInfo(postInfo);
     }
 }

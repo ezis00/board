@@ -24,10 +24,10 @@ import com.spectra.board.domain.granule.SurveyAnswerType;
 import com.spectra.board.domain.granule.SurveyOptionKey;
 import com.spectra.board.domain.granule.SurveyOptionMap;
 import com.spectra.board.domain.granule.UserType;
-import com.spectra.board.domain.logic.BoardLogic;
-import com.spectra.board.domain.logic.ChannelLogic;
-import com.spectra.board.domain.logic.SurveyLogic;
-import com.spectra.board.domain.logic.UserLogic;
+import com.spectra.board.domain.spec.BoardService;
+import com.spectra.board.domain.spec.ChannelService;
+import com.spectra.board.domain.spec.SurveyService;
+import com.spectra.board.domain.spec.UserService;
 import com.spectra.share.util.TimeUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,20 +38,20 @@ public class BoardTest
 {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private UserLogic userLogic;
-    private ChannelLogic channelLogic;
-    private BoardLogic boardLogic;
-    private SurveyLogic surveyLogic;
+    private UserService userService;
+    private ChannelService channelService;
+    private BoardService boardService;
+    private SurveyService surveyService;
 
     private List<User> users;
 
     @Before
     public void setup()
     {
-        this.userLogic = new UserJavaLogic();
-        this.channelLogic = new ChannelJavaLogic();
-        this.boardLogic = new BoardJavaLogic();
-        this.surveyLogic = new SurveyJavaLogic();
+        this.userService = new UserJavaLogic();
+        this.channelService = new ChannelJavaLogic();
+        this.boardService = new BoardJavaLogic();
+        this.surveyService = new SurveyJavaLogic();
 
         initUser();
     }
@@ -71,7 +71,7 @@ public class BoardTest
         );
         for (User user : users)
         {
-            this.userLogic.register(user);
+            this.userService.register(user);
         }
     }
 
@@ -79,17 +79,35 @@ public class BoardTest
     public void test()
     {
         User admin = users.get(0);
+        Channel channel = channel(admin);
+
+        surveyBoard(channel.getCurrentPostInfo(), admin);
+        noticeBoard(channel.getCurrentPostInfo(), admin);
+        privateBoard(channel.getCurrentPostInfo(), admin);
+
+        getBoardList(channel);
+    }
+
+    private void getBoardList(Channel channel)
+    {
+        List<Board> boardList = this.boardService.findByParentPostInfo(channel.getCurrentPostInfo());
+        logger.info("getBoardList");
+        for (Board board : boardList)
+        {
+            logger.info(board.toString());
+        }
+    }
+
+    private Channel channel(User admin)
+    {
         Channel channel = new Channel("영업 비밀", admin.getId());
         channel.setMemberIdSet(new ChannelMemberIdSet(users.subList(0, 5).stream().map(Entity::getId).collect(Collectors.toSet())));
         channel.addOption(ChannelOptionKey.PRIVATE, "true");
         channel.addOption(ChannelOptionKey.ATTACH_MAX_SIZE_MB, "1000");
         channel.addOption(ChannelOptionKey.THUMBNAIL_IMAGE_ID, "thumbnail_image_id");
         channel.addOption(ChannelOptionKey.BACKGROUND_IMAGE_ID, "background_image_id");
-        channelLogic.register(channel);
-
-        surveyBoard(channel.getCurrentPostInfo(), admin);
-        noticeBoard(channel.getCurrentPostInfo(), admin);
-        privateBoard(channel.getCurrentPostInfo(), admin);
+        channelService.register(channel);
+        return channel;
     }
 
     private void surveyBoard(PostInfo postInfo, User admin)
@@ -101,7 +119,7 @@ public class BoardTest
         Notify notify = new Notify("20180424120000", "20180428120000", Arrays.asList(Level.EMAIL, Level.SMS));
         notify.addNotifyOption(NotifyOptionKey.REPORT_ME_FLAG, Boolean.toString(true));
         board.setNotify(notify);
-        boardLogic.register(board);
+        boardService.register(board);
 
         surveyWhere(admin, board);
         surveyWhen(admin, board);
@@ -121,7 +139,7 @@ public class BoardTest
         surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.IMAGE, "C식당 사진"));
         survey.setAnswerSet(surveyAnswerSet);
         survey.setExpiredDate(TimeUtil.getTime("20180431120000"));
-        surveyLogic.register(survey);
+        surveyService.register(survey);
     }
 
     private void surveyWhen(User admin, Board board)
@@ -137,7 +155,7 @@ public class BoardTest
         surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.DATE, "20180511"));
         survey.setAnswerSet(surveyAnswerSet);
         survey.setExpiredDate(TimeUtil.getTime("20180431120000"));
-        surveyLogic.register(survey);
+        surveyService.register(survey);
     }
 
     private void surveyWhat(User admin, Board board)
@@ -154,7 +172,7 @@ public class BoardTest
         surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.IMAGE, "물고기 사진"));
         survey.setAnswerSet(surveyAnswerSet);
         survey.setExpiredDate(TimeUtil.getTime("20180431120000"));
-        surveyLogic.register(survey);
+        surveyService.register(survey);
     }
 
     private void noticeBoard(PostInfo channelId, User admin)
@@ -164,7 +182,7 @@ public class BoardTest
         board.setContents("아래 보안 프로그램을 꼭 설치 부탁드립니다..");
         board.addBoardOption(BoardOptionKey.NOTICE, Boolean.toString(true));
         board.addAttach(new Attach(AttachType.EXE, "보안프로그램패치파일"));
-        boardLogic.register(board);
+        boardService.register(board);
     }
 
     private void privateBoard(PostInfo channelId, User admin)
@@ -173,6 +191,6 @@ public class BoardTest
         board.setTitle("작성중");
         board.setContents("작성중인 글입니다.");
         board.addBoardOption(BoardOptionKey.PRIVATE, Boolean.toString(true));
-        boardLogic.register(board);
+        boardService.register(board);
     }
 }
