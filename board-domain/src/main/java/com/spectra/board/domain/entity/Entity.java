@@ -2,6 +2,8 @@ package com.spectra.board.domain.entity;
 
 import java.util.UUID;
 
+import com.spectra.board.domain.granule.NameValueList;
+
 public abstract class Entity
 {
     private final String id;
@@ -20,6 +22,8 @@ public abstract class Entity
     {
         return id;
     }
+
+    public abstract void setValues(NameValueList nameValueList);
 
     @Override
     public String toString()

@@ -1,42 +1,37 @@
 package com.spectra.board.domain.logic;
 
-import java.util.List;
-
+import com.spectra.board.domain.entity.Survey;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.spec.SurveyService;
+import com.spectra.board.domain.store.SurveyStore;
 
-public class SurveyLogic implements PostService
+public class SurveyLogic implements SurveyService
 {
-    private PostStore postStore;
+    private SurveyStore surveyStore;
 
-    public SurveyLogic(PostStore postStore)
+    public SurveyLogic(SurveyStore surveyStore)
     {
-        this.postStore = postStore;
+        this.surveyStore = surveyStore;
     }
 
     @Override
-    public String register(Post post)
+    public String register(Survey survey)
     {
-        postStore.create(post);
-        return post.getId();
+        surveyStore.create(survey);
+        return survey.getId();
     }
 
     @Override
-    public Post find(String postId)
+    public Survey find(String surveyId)
     {
-        return postStore.retrieve(postId);
+        return surveyStore.retrieve(surveyId);
     }
 
     @Override
-    public List<Post> findByChannelName(String channelName)
+    public void modify(String surveyId, NameValueList nameValueList)
     {
-        return postStore.retrieveByChannelName(channelName);
-    }
-
-    @Override
-    public void modify(String postId, NameValueList nameValueList)
-    {
-        Post post = find(postId);
-        post.setValues(nameValueList);
-        postStore.update(post);
+        Survey survey = find(surveyId);
+        survey.setValues(nameValueList);
+        surveyStore.update(survey);
     }
 }

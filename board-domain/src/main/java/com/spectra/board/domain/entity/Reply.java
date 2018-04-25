@@ -1,26 +1,19 @@
 package com.spectra.board.domain.entity;
 
-import java.util.Optional;
-
 import com.spectra.board.domain.granule.NameValue;
 import com.spectra.board.domain.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 
-public class Reply extends Entity
+public class Reply extends Post
 {
     private final PostType postType = PostType.REPLY;
-    private final Optional<PostInfo> parentPostInfo;
-    private final String writerId;
-    private final long postDate;
     private String contents;
     private long lastUpdateDate;
 
-    public Reply(PostInfo parentPostInfo, String writerId, long postDate)
+    public Reply(PostInfo parentPostInfo, String writerId)
     {
-        this.parentPostInfo = Optional.ofNullable(parentPostInfo);
-        this.writerId = writerId;
-        this.postDate = postDate;
+        super(parentPostInfo, writerId);
     }
 
     public PostType getPostType()
@@ -31,21 +24,6 @@ public class Reply extends Entity
     public PostInfo getCurrentPostInfo()
     {
         return new PostInfo(getPostType(), getId());
-    }
-
-    public Optional<PostInfo> getParentPostInfo()
-    {
-        return parentPostInfo;
-    }
-
-    public String getWriterId()
-    {
-        return writerId;
-    }
-
-    public long getPostDate()
-    {
-        return postDate;
     }
 
     public String getContents()

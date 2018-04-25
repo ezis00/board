@@ -1,14 +1,12 @@
 package com.spectra.board.domain.store;
 
-import java.util.List;
+import com.spectra.board.domain.entity.Survey;
 
 public interface SurveyStore
 {
-    void create(Post post);
+    void create(Survey survey);
 
-    Post retrieve(String postId);
+    Survey retrieve(String surveyId);
 
-    void update(Post post);
-
-    List<Post> retrieveByChannelName(String channelName);
+    void update(Survey survey);
 }

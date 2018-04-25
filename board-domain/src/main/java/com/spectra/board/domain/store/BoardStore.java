@@ -2,13 +2,13 @@ package com.spectra.board.domain.store;
 
 import java.util.List;
 
+import com.spectra.board.domain.entity.Board;
+
 public interface BoardStore
 {
-    void create(Post post);
+    void create(Board board);
 
-    Post retrieve(String postId);
+    Board retrieve(String boardId);
 
-    void update(Post post);
-
-    List<Post> retrieveByChannelName(String channelName);
+    void update(Board board);
 }

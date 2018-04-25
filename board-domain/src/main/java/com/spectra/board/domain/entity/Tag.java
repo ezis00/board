@@ -1,5 +1,7 @@
 package com.spectra.board.domain.entity;
 
+import com.spectra.board.domain.granule.NameValueList;
+
 public class Tag extends Entity
 {
     private final String name;
@@ -10,6 +12,12 @@ public class Tag extends Entity
         super();
         this.name = name;
         this.createdDate = System.currentTimeMillis();
+    }
+
+    @Override
+    public void setValues(NameValueList nameValueList)
+    {
+
     }
 
     public String getName()

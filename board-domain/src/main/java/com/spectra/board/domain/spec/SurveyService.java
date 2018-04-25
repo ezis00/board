@@ -1,16 +1,13 @@
 package com.spectra.board.domain.spec;
 
-import java.util.List;
-
+import com.spectra.board.domain.entity.Survey;
 import com.spectra.board.domain.granule.NameValueList;
 
 public interface SurveyService
 {
-    String register(Post post);
+    String register(Survey survey);
 
-    Post find(String postId);
+    Survey find(String surveyId);
 
-    List<Post> findByChannelName(String channelName);
-
-    void modify(String postId, NameValueList nameValueList);
+    void modify(String surveyId, NameValueList nameValueList);
 }

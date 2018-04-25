@@ -1,4 +1,4 @@
-package com.spectra.board.domain.entity;
+package com.spectra.board.domain.granule;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,27 +9,19 @@ import com.spectra.board.domain.granule.Level;
 import com.spectra.board.domain.granule.NotifyOptionKey;
 import com.spectra.board.domain.granule.PostInfo;
 
-public class Notify extends Entity
+public class Notify
 {
-    private final PostInfo parentPostInfo;
     private final String startDate;
     private final String endDate;
     private final List<Level> levelList;
     private final Map<NotifyOptionKey, String> notifyOptionMap;
 
-    public Notify(PostInfo parentPostInfo, String startDate, String endDate, List<Level> levelList)
+    public Notify(String startDate, String endDate, List<Level> levelList)
     {
-        super();
-        this.parentPostInfo = parentPostInfo;
         this.startDate = startDate;
         this.endDate = endDate;
         this.levelList = levelList;
         this.notifyOptionMap = new HashMap<>();
-    }
-
-    public PostInfo getParentPostInfo()
-    {
-        return parentPostInfo;
     }
 
     public String getStartDate()
@@ -55,11 +47,10 @@ public class Notify extends Entity
     public String toString()
     {
         return "Notify{" +
-                "parentPostInfo=" + parentPostInfo +
-                ", startDate='" + startDate + '\'' +
+                "startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", levelList=" + levelList +
                 ", notifyOptionMap=" + notifyOptionMap +
-                "} " + super.toString();
+                '}';
     }
 }

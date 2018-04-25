@@ -1,5 +1,7 @@
 package com.spectra.board.domain.entity;
 
+import com.spectra.board.domain.granule.NameValueList;
+
 public class SurveyResult extends Entity
 {
     private final String surveyId;
@@ -34,6 +36,12 @@ public class SurveyResult extends Entity
     public long getDate()
     {
         return date;
+    }
+
+    @Override
+    public void setValues(NameValueList nameValueList)
+    {
+
     }
 
     @Override

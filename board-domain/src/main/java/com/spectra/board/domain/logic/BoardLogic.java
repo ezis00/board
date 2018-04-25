@@ -2,41 +2,38 @@ package com.spectra.board.domain.logic;
 
 import java.util.List;
 
+import com.spectra.board.domain.entity.Board;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.spec.BoardService;
+import com.spectra.board.domain.store.BoardStore;
 
-public class BoardLogic implements PostService
+public class BoardLogic implements BoardService
 {
-    private PostStore postStore;
+    private BoardStore boardStore;
 
-    public BoardLogic(PostStore postStore)
+    public BoardLogic(BoardStore boardStore)
     {
-        this.postStore = postStore;
+        this.boardStore = boardStore;
     }
 
     @Override
-    public String register(Post post)
+    public String register(Board board)
     {
-        postStore.create(post);
-        return post.getId();
+        boardStore.create(board);
+        return board.getId();
     }
 
     @Override
-    public Post find(String postId)
+    public Board find(String boardId)
     {
-        return postStore.retrieve(postId);
+        return boardStore.retrieve(boardId);
     }
 
     @Override
-    public List<Post> findByChannelName(String channelName)
+    public void modify(String boardId, NameValueList nameValueList)
     {
-        return postStore.retrieveByChannelName(channelName);
-    }
-
-    @Override
-    public void modify(String postId, NameValueList nameValueList)
-    {
-        Post post = find(postId);
-        post.setValues(nameValueList);
-        postStore.update(post);
+        Board board = find(boardId);
+        board.setValues(nameValueList);
+        boardStore.update(board);
     }
 }

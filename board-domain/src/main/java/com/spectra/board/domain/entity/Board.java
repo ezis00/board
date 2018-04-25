@@ -1,6 +1,5 @@
 package com.spectra.board.domain.entity;
 
-import java.util.Optional;
 import java.util.Set;
 
 import com.spectra.board.domain.granule.Attach;
@@ -11,15 +10,13 @@ import com.spectra.board.domain.granule.BoardTagIdSet;
 import com.spectra.board.domain.granule.BoardViewerIdSet;
 import com.spectra.board.domain.granule.NameValue;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.granule.Notify;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 
-public class Board extends Entity
+public class Board extends Post
 {
     private final PostType postType = PostType.BOARD;
-    private final Optional<PostInfo> parentPostInfo;
-    private final String writerId;
-    private final long postDate;
     private String title;
     private String contents;
     private long lastUpdateDate;
@@ -27,6 +24,7 @@ public class Board extends Entity
     private BoardAttachSet attachSet;
     private BoardViewerIdSet viewerIdSet;
     private BoardTagIdSet tagIdSet;
+    private Notify notify;
     private int viewCount;
 
     public Board(String writerId)
@@ -36,9 +34,7 @@ public class Board extends Entity
 
     public Board(PostInfo parentPostInfo, String writerId)
     {
-        this.parentPostInfo = Optional.ofNullable(parentPostInfo);
-        this.writerId = writerId;
-        this.postDate = System.currentTimeMillis();
+        super(parentPostInfo, writerId);
         this.optionMap = new BoardOptionMap();
         this.attachSet = new BoardAttachSet();
         this.viewerIdSet = new BoardViewerIdSet();
@@ -49,16 +45,6 @@ public class Board extends Entity
     public PostType getPostType()
     {
         return this.postType;
-    }
-
-    public PostInfo getCurrentPostInfo()
-    {
-        return new PostInfo(getPostType(), getId());
-    }
-
-    public Optional<PostInfo> getParentPostInfo()
-    {
-        return parentPostInfo;
     }
 
     public String getContents()
@@ -79,16 +65,6 @@ public class Board extends Entity
     public void setLastUpdateDate(long lastUpdateDate)
     {
         this.lastUpdateDate = lastUpdateDate;
-    }
-
-    public long getPostDate()
-    {
-        return postDate;
-    }
-
-    public String getWriterId()
-    {
-        return writerId;
     }
 
     public String getTitle()
@@ -142,6 +118,16 @@ public class Board extends Entity
         return this.tagIdSet.getAll();
     }
 
+    public Notify getNotify()
+    {
+        return notify;
+    }
+
+    public void setNotify(Notify notify)
+    {
+        this.notify = notify;
+    }
+
     public int getViewCount()
     {
         return viewCount;
@@ -152,17 +138,13 @@ public class Board extends Entity
         this.viewCount = viewCount;
     }
 
-
     @Override
     public String toString()
     {
         return "Board{" +
                 "postType=" + postType +
-                ", parentPostInfo=" + parentPostInfo +
-                ", writerId='" + writerId + '\'' +
                 ", title='" + title + '\'' +
                 ", contents='" + contents + '\'' +
-                ", postDate=" + postDate +
                 ", optionMap=" + optionMap +
                 ", attachSet=" + attachSet +
                 ", viewerIdSet=" + viewerIdSet +

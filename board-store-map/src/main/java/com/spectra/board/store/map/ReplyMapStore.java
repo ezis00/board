@@ -1,12 +1,14 @@
 package com.spectra.board.store.map;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class ReplyMapStore implements PostStore
+import com.spectra.board.domain.entity.Reply;
+import com.spectra.board.domain.store.ReplyStore;
+
+public class ReplyMapStore implements ReplyStore
 {
-    private Map<String, Post> map;
+    private Map<String, Reply> map;
 
     public ReplyMapStore()
     {
@@ -14,26 +16,20 @@ public class ReplyMapStore implements PostStore
     }
 
     @Override
-    public void create(Post post)
+    public void create(Reply reply)
     {
-        this.map.put(post.getId(), post);
+        this.map.put(reply.getId(), reply);
     }
 
     @Override
-    public Post retrieve(String postId)
+    public Reply retrieve(String replyId)
     {
-        return this.map.get(postId);
+        return this.map.get(replyId);
     }
 
     @Override
-    public List<Post> retrieveByChannelName(String channelName)
+    public void update(Reply reply)
     {
-        return this.map.values().stream().filter(channel -> ch);
-    }
-
-    @Override
-    public void update(Post post)
-    {
-        this.map.put(post.getId(), post);
+        this.map.put(reply.getId(), reply);
     }
 }

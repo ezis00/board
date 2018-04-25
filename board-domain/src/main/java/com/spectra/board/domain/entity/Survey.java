@@ -1,12 +1,7 @@
 package com.spectra.board.domain.entity;
 
-import java.util.Optional;
 import java.util.Set;
 
-import com.spectra.board.domain.granule.BoardAttachSet;
-import com.spectra.board.domain.granule.BoardOptionMap;
-import com.spectra.board.domain.granule.BoardTagIdSet;
-import com.spectra.board.domain.granule.BoardViewerIdSet;
 import com.spectra.board.domain.granule.NameValue;
 import com.spectra.board.domain.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
@@ -16,12 +11,9 @@ import com.spectra.board.domain.granule.SurveyAnswerSet;
 import com.spectra.board.domain.granule.SurveyOptionKey;
 import com.spectra.board.domain.granule.SurveyOptionMap;
 
-public class Survey extends Entity
+public class Survey extends Post
 {
     private final PostType postType = PostType.SURVEY;
-    private final Optional<PostInfo> parentPostInfo;
-    private final String writerId;
-    private final long postDate;
     private String title;
     private SurveyAnswerSet answerSet;
     private SurveyOptionMap optionMap;
@@ -30,10 +22,8 @@ public class Survey extends Entity
 
     public Survey(PostInfo parentPostInfo, String title, String writerId)
     {
-        this.parentPostInfo = Optional.ofNullable(parentPostInfo);
-        this.writerId = writerId;
+        super(parentPostInfo, writerId);
         this.title = title;
-        this.postDate = System.currentTimeMillis();
         this.optionMap = new SurveyOptionMap();
         this.answerSet = new SurveyAnswerSet();
     }
@@ -81,6 +71,36 @@ public class Survey extends Entity
     public void setExpiredDate(long expiredDate)
     {
         this.expiredDate = expiredDate;
+    }
+
+    public SurveyAnswerSet getAnswerSet()
+    {
+        return answerSet;
+    }
+
+    public void setAnswerSet(SurveyAnswerSet answerSet)
+    {
+        this.answerSet = answerSet;
+    }
+
+    public SurveyOptionMap getOptionMap()
+    {
+        return optionMap;
+    }
+
+    public void setOptionMap(SurveyOptionMap optionMap)
+    {
+        this.optionMap = optionMap;
+    }
+
+    public long getLastUpdateDate()
+    {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(long lastUpdateDate)
+    {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     @Override

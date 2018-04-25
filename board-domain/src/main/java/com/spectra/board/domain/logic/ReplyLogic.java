@@ -2,41 +2,38 @@ package com.spectra.board.domain.logic;
 
 import java.util.List;
 
+import com.spectra.board.domain.entity.Reply;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.spec.ReplyService;
+import com.spectra.board.domain.store.ReplyStore;
 
-public class ReplyLogic implements PostService
+public class ReplyLogic implements ReplyService
 {
-    private PostStore postStore;
+    private ReplyStore replyStore;
 
-    public ReplyLogic(PostStore postStore)
+    public ReplyLogic(ReplyStore replyStore)
     {
-        this.postStore = postStore;
+        this.replyStore = replyStore;
     }
 
     @Override
-    public String register(Post post)
+    public String register(Reply reply)
     {
-        postStore.create(post);
-        return post.getId();
+        replyStore.create(reply);
+        return reply.getId();
     }
 
     @Override
-    public Post find(String postId)
+    public Reply find(String replyId)
     {
-        return postStore.retrieve(postId);
+        return replyStore.retrieve(replyId);
     }
 
     @Override
-    public List<Post> findByChannelName(String channelName)
+    public void modify(String replyId, NameValueList nameValueList)
     {
-        return postStore.retrieveByChannelName(channelName);
-    }
-
-    @Override
-    public void modify(String postId, NameValueList nameValueList)
-    {
-        Post post = find(postId);
-        post.setValues(nameValueList);
-        postStore.update(post);
+        Reply reply = find(replyId);
+        reply.setValues(nameValueList);
+        replyStore.update(reply);
     }
 }

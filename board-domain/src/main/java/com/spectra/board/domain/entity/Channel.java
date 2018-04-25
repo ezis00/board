@@ -7,21 +7,25 @@ import com.spectra.board.domain.granule.ChannelOptionKey;
 import com.spectra.board.domain.granule.ChannelOptionMap;
 import com.spectra.board.domain.granule.NameValue;
 import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 
-public class Channel extends Entity
+public class Channel extends Post
 {
     private final PostType postType = PostType.CHANNEL;
     private final String name;
     private ChannelOptionMap channelOptionMap;
     private ChannelMemberIdSet channelMemberIdSet;
 
-    public Channel(String name)
+    public Channel(String writerId, String name)
     {
-        super();
+        this(null, writerId, name);
+    }
+
+    public Channel(PostInfo parentPostInfo, String writerId, String name)
+    {
+        super(parentPostInfo, writerId);
         this.name = name;
-        this.channelOptionMap = new ChannelOptionMap();
-        this.channelMemberIdSet = new ChannelMemberIdSet();
     }
 
     public PostType getPostType()

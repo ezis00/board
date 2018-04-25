@@ -1,5 +1,6 @@
 package com.spectra.board.domain.entity;
 
+import com.spectra.board.domain.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
 
 public class Scrap extends Entity
@@ -28,6 +29,12 @@ public class Scrap extends Entity
     public long getDate()
     {
         return date;
+    }
+
+    @Override
+    public void setValues(NameValueList nameValueList)
+    {
+
     }
 
     @Override

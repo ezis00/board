@@ -1,12 +1,14 @@
 package com.spectra.board.store.map;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class SurveyMapStore implements PostStore
+import com.spectra.board.domain.entity.Survey;
+import com.spectra.board.domain.store.SurveyStore;
+
+public class SurveyMapStore implements SurveyStore
 {
-    private Map<String, Post> map;
+    private Map<String, Survey> map;
 
     public SurveyMapStore()
     {
@@ -14,26 +16,20 @@ public class SurveyMapStore implements PostStore
     }
 
     @Override
-    public void create(Post post)
+    public void create(Survey survey)
     {
-        this.map.put(post.getId(), post);
+        this.map.put(survey.getId(), survey);
     }
 
     @Override
-    public Post retrieve(String postId)
+    public Survey retrieve(String surveyId)
     {
-        return this.map.get(postId);
+        return this.map.get(surveyId);
     }
 
     @Override
-    public List<Post> retrieveByChannelName(String channelName)
+    public void update(Survey survey)
     {
-        return this.map.values().stream().filter(channel -> ch);
-    }
-
-    @Override
-    public void update(Post post)
-    {
-        this.map.put(post.getId(), post);
+        this.map.put(survey.getId(), survey);
     }
 }

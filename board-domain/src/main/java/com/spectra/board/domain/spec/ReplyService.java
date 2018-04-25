@@ -2,15 +2,14 @@ package com.spectra.board.domain.spec;
 
 import java.util.List;
 
+import com.spectra.board.domain.entity.Reply;
 import com.spectra.board.domain.granule.NameValueList;
 
 public interface ReplyService
 {
-    String register(Post post);
+    String register(Reply reply);
 
-    Post find(String postId);
+    Reply find(String replyId);
 
-    List<Post> findByChannelName(String channelName);
-
-    void modify(String postId, NameValueList nameValueList);
+    void modify(String replyId, NameValueList nameValueList);
 }

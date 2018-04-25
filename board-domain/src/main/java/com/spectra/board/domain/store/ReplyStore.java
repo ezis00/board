@@ -1,14 +1,12 @@
 package com.spectra.board.domain.store;
 
-import java.util.List;
+import com.spectra.board.domain.entity.Reply;
 
 public interface ReplyStore
 {
-    void create(Post post);
+    void create(Reply reply);
 
-    Post retrieve(String postId);
+    Reply retrieve(String replyId);
 
-    void update(Post post);
-
-    List<Post> retrieveByChannelName(String channelName);
+    void update(Reply reply);
 }
