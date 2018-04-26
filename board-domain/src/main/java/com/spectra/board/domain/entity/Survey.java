@@ -2,15 +2,15 @@ package com.spectra.board.domain.entity;
 
 import java.util.Set;
 
-import com.spectra.board.domain.granule.SurveyAnswerType;
-import com.spectra.board.domain.share.granule.NameValue;
-import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.granule.SurveyAnswer;
 import com.spectra.board.domain.granule.SurveyAnswerSet;
+import com.spectra.board.domain.granule.SurveyAnswerType;
 import com.spectra.board.domain.granule.SurveyOptionKey;
 import com.spectra.board.domain.granule.SurveyOptionMap;
+import com.spectra.board.domain.share.granule.NameValue;
+import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.share.util.TimeUtil;
 
 public class Survey extends Post
@@ -126,6 +126,15 @@ public class Survey extends Post
             {
                 case "title":
                     this.title = value;
+                    break;
+                case "answerSet":
+                    this.answerSet = SurveyAnswerSet.fromJson(value);
+                    break;
+                case "optionMap":
+                    this.optionMap = SurveyOptionMap.fromJson(value);
+                    break;
+                case "expiredDate":
+                    this.expiredDate = Long.parseLong(value);
                     break;
                 default:
                     throw new RuntimeException("Undefined field:" + nameValue.getName());

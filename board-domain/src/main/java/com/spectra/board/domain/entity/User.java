@@ -114,7 +114,7 @@ public class User extends Entity
                     this.email = value;
                     break;
                 case "loginCount":
-                    this.loginCount = Integer.parseInt(value);
+                    this.loginCount++;
                     break;
                 default:
                     throw new RuntimeException("Undefined field:" + nameValue.getName());
