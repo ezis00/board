@@ -7,26 +7,26 @@ import com.spectra.share.util.JsonUtil;
 
 public class SurveyAnswerSet
 {
-    private Set<SurveyAnswer> answerSet;
+    private Set<SurveyAnswer> set;
 
     public SurveyAnswerSet()
     {
-        this.answerSet = new HashSet<>();
+        this.set = new HashSet<>();
     }
 
     public SurveyAnswerSet(SurveyAnswer answer)
     {
-        this.answerSet.add(answer);
+        this.set.add(answer);
     }
 
     public Set<SurveyAnswer> getAll()
     {
-        return this.answerSet;
+        return this.set;
     }
 
     public void add(SurveyAnswer surveyAnswer)
     {
-        this.answerSet.add(surveyAnswer);
+        this.set.add(surveyAnswer);
     }
 
     public static SurveyAnswerSet fromJson(String value)
@@ -38,7 +38,7 @@ public class SurveyAnswerSet
     public String toString()
     {
         return "IdSet{" +
-                "answerSet=" + answerSet +
+                "set=" + set +
                 '}';
     }
 }

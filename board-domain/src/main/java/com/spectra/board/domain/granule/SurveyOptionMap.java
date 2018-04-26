@@ -8,31 +8,31 @@ import com.spectra.share.util.JsonUtil;
 
 public class SurveyOptionMap
 {
-    private Map<SurveyOptionKey, String> surveyOptionMap;
+    private Map<SurveyOptionKey, String> map;
 
     public SurveyOptionMap()
     {
-        this.surveyOptionMap = new HashMap<>();
+        this.map = new HashMap<>();
     }
 
     public SurveyOptionMap(SurveyOptionKey surveyOptionKey, String value)
     {
-        this.surveyOptionMap.put(surveyOptionKey, value);
+        this.map.put(surveyOptionKey, value);
     }
 
     public String get(SurveyOptionKey surveyOptionKey)
     {
-        return this.surveyOptionMap.get(surveyOptionKey);
+        return this.map.get(surveyOptionKey);
     }
 
     public Map<SurveyOptionKey, String> getAll()
     {
-        return this.surveyOptionMap;
+        return this.map;
     }
 
     public void put(SurveyOptionKey surveyOptionKey, String value)
     {
-        this.surveyOptionMap.put(surveyOptionKey, value);
+        this.map.put(surveyOptionKey, value);
     }
 
     public static SurveyOptionMap fromJson(String value)
@@ -49,7 +49,7 @@ public class SurveyOptionMap
     public String toString()
     {
         return "SurveyOptionMap{" +
-                "surveyOptionMap=" + surveyOptionMap +
+                "map=" + map +
                 '}';
     }
 }
