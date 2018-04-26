@@ -8,26 +8,26 @@ import com.spectra.share.util.JsonUtil;
 
 public class BoardOptionMap
 {
-    private Map<BoardOptionKey, String> boardOptionMap;
+    private Map<BoardOptionKey, String> map;
 
     public BoardOptionMap()
     {
-        this.boardOptionMap = new HashMap<>();
+        this.map = new HashMap<>();
     }
 
     public BoardOptionMap(BoardOptionKey boardOptionKey, String value)
     {
-        this.boardOptionMap.put(boardOptionKey, value);
+        this.map.put(boardOptionKey, value);
     }
 
     public String get(BoardOptionKey boardOptionKey)
     {
-        return this.boardOptionMap.get(boardOptionKey);
+        return this.map.get(boardOptionKey);
     }
 
     public void put(BoardOptionKey boardOptionKey, String value)
     {
-        this.boardOptionMap.put(boardOptionKey, value);
+        this.map.put(boardOptionKey, value);
     }
 
     public static BoardOptionMap fromJson(String value)
@@ -44,7 +44,7 @@ public class BoardOptionMap
     public String toString()
     {
         return "BoardOptionMap{" +
-                "boardOptionMap=" + boardOptionMap +
+                "map=" + map +
                 '}';
     }
 }

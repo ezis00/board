@@ -7,26 +7,26 @@ import com.spectra.share.util.JsonUtil;
 
 public class BoardAttachSet
 {
-    private Set<Attach> attachList;
+    private Set<Attach> set;
 
     public BoardAttachSet()
     {
-        this.attachList = new HashSet<>();
+        this.set = new HashSet<>();
     }
 
     public BoardAttachSet(Attach attach)
     {
-        this.attachList.add(attach);
+        this.set.add(attach);
     }
 
     public Set<Attach> getAll()
     {
-        return this.attachList;
+        return this.set;
     }
 
     public void add(Attach attach)
     {
-        this.attachList.add(attach);
+        this.set.add(attach);
     }
 
     public static BoardAttachSet fromJson(String value)
@@ -38,7 +38,7 @@ public class BoardAttachSet
     public String toString()
     {
         return "IdSet{" +
-                "attachList=" + attachList +
+                "set=" + set +
                 '}';
     }
 }
