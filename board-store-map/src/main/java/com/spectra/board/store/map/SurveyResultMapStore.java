@@ -3,7 +3,7 @@ package com.spectra.board.store.map;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.spectra.board.domain.entity.SurveyResult;
+import com.spectra.board.domain.entity.board.survey.SurveyResult;
 import com.spectra.board.domain.store.SurveyResultStore;
 
 public class SurveyResultMapStore implements SurveyResultStore

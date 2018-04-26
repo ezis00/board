@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.spectra.board.domain.entity.Board;
+import com.spectra.board.domain.entity.board.Posting;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.store.BoardStore;
 import org.slf4j.Logger;
@@ -16,7 +16,7 @@ public class BoardMapStore implements BoardStore
 {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private Map<String, Board> map;
+    private Map<String, Posting> map;
 
     public BoardMapStore()
     {
@@ -24,31 +24,32 @@ public class BoardMapStore implements BoardStore
     }
 
     @Override
-    public void create(Board board)
+    public void create(Posting posting)
     {
-        logger.info(board.toString());
-        this.map.put(board.getId(), board);
+        logger.info(posting.toString());
+        this.map.put(posting.getId(), posting);
     }
 
     @Override
-    public Board retrieve(String boardId)
+    public Posting retrieve(String boardId)
     {
+        logger.info(boardId);
         return this.map.get(boardId);
     }
 
     @Override
-    public void update(Board board)
+    public void update(Posting posting)
     {
-        this.map.put(board.getId(), board);
+        this.map.put(posting.getId(), posting);
     }
 
     @Override
-    public List<Board> retrieveByParentPostInfo(PostInfo postInfo)
+    public List<Posting> retrieveByParentPostInfo(PostInfo postInfo)
     {
         logger.info(postInfo.toString());
-        for (Board board : new ArrayList<>(this.map.values()))
+        for (Posting posting : new ArrayList<>(this.map.values()))
         {
-            logger.info(board.getParentPostInfo().toString());
+            logger.info(posting.getParentPostInfo().toString());
         }
         return this.map.values().stream().filter(board -> board.getParentPostInfo().equals(postInfo)).collect(Collectors.toList());
     }

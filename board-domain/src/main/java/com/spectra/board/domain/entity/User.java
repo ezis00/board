@@ -3,6 +3,7 @@ package com.spectra.board.domain.entity;
 import java.util.Arrays;
 import java.util.List;
 
+import com.spectra.board.domain.entity.board.Board;
 import com.spectra.board.domain.granule.UserType;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
@@ -15,6 +16,9 @@ public class User extends Entity
     private String email;
     private final long joinDate;
     private int loginCount;
+
+    transient private List<Board> boardList;
+    transient private List<Scrap> scrapList;
 
     public User(UserType userType, String name, String phone, String email)
     {

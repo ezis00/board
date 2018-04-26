@@ -1,7 +1,10 @@
-package com.spectra.board.domain.entity;
+package com.spectra.board.domain.entity.board.survey;
 
 import java.util.Set;
 
+import com.spectra.board.domain.entity.User;
+import com.spectra.board.domain.entity.board.Board;
+import com.spectra.board.domain.entity.board.Posting;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.granule.SurveyAnswer;
@@ -13,7 +16,7 @@ import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.share.util.TimeUtil;
 
-public class Survey extends Post
+public class Survey extends Board
 {
     private final PostType postType = PostType.SURVEY;
     private String title;
@@ -144,7 +147,7 @@ public class Survey extends Post
 
     public static Survey getWhereSample()
     {
-        Survey survey = new Survey(Board.getNotifySample().getCurrentPostInfo(), "금주 회식 장소 조사", User.getAdminSample().getId());
+        Survey survey = new Survey(Posting.getNotifySample().getCurrentPostInfo(), "금주 회식 장소 조사", User.getAdminSample().getId());
         SurveyOptionMap surveyOptionMap = new SurveyOptionMap();
         surveyOptionMap.put(SurveyOptionKey.ALLOW_ADD_ANSWER, Boolean.toString(true));
         surveyOptionMap.put(SurveyOptionKey.ALLOW_ANONYMOUS, Boolean.toString(true));
@@ -160,7 +163,7 @@ public class Survey extends Post
 
     public static Survey getWhenSample()
     {
-        Survey survey = new Survey(Board.getNotifySample().getCurrentPostInfo(), "금주 회식 날짜 조사", User.getAdminSample().getId());
+        Survey survey = new Survey(Posting.getNotifySample().getCurrentPostInfo(), "금주 회식 날짜 조사", User.getAdminSample().getId());
         SurveyOptionMap surveyOptionMap = new SurveyOptionMap();
         surveyOptionMap.put(SurveyOptionKey.ALLOW_ANONYMOUS, Boolean.toString(true));
         surveyOptionMap.put(SurveyOptionKey.ALLOW_MULTI_SELECT, Boolean.toString(true));
@@ -176,7 +179,7 @@ public class Survey extends Post
 
     public static Survey getWhatSample()
     {
-        Survey survey = new Survey(Board.getNotifySample().getCurrentPostInfo(), "금주 회식 메뉴 조사", User.getAdminSample().getId());
+        Survey survey = new Survey(Posting.getNotifySample().getCurrentPostInfo(), "금주 회식 메뉴 조사", User.getAdminSample().getId());
         SurveyOptionMap surveyOptionMap = new SurveyOptionMap();
         surveyOptionMap.put(SurveyOptionKey.ALLOW_ADD_ANSWER, Boolean.toString(true));
         surveyOptionMap.put(SurveyOptionKey.ALLOW_ANONYMOUS, Boolean.toString(true));

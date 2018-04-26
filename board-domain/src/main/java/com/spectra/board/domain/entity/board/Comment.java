@@ -1,17 +1,22 @@
-package com.spectra.board.domain.entity;
+package com.spectra.board.domain.entity.board;
 
+import java.util.List;
+
+import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 
-public class Reply extends Post
+public class Comment extends Board
 {
     private final PostType postType = PostType.REPLY;
     private String contents;
     private long lastUpdateDate;
 
-    public Reply(PostInfo parentPostInfo, String writerId)
+    transient private List<Comment> commentList;
+
+    public Comment(PostInfo parentPostInfo, String writerId)
     {
         super(parentPostInfo, writerId);
     }
@@ -31,12 +36,12 @@ public class Reply extends Post
         return contents;
     }
 
-    public static Reply getSample()
+    public static Comment getSample()
     {
-        Reply reply = new Reply(Board.getNoticeSample().getCurrentPostInfo(), User.getAdminSample().getId());
-        reply.setContents("무플 방지 위원회에서 나왔습니다.");
-        reply.setLastUpdateDate(System.currentTimeMillis());
-        return reply;
+        Comment comment = new Comment(Posting.getNoticeSample().getCurrentPostInfo(), User.getAdminSample().getId());
+        comment.setContents("무플 방지 위원회에서 나왔습니다.");
+        comment.setLastUpdateDate(System.currentTimeMillis());
+        return comment;
     }
 
     public long getLastUpdateDate()
@@ -52,7 +57,7 @@ public class Reply extends Post
     @Override
     public String toString()
     {
-        return "Reply{} " + super.toString();
+        return "Comment{} " + super.toString();
     }
 
     public void setValues(NameValueList nameValueList)

@@ -2,16 +2,16 @@ package com.spectra.board.domain.store;
 
 import java.util.List;
 
-import com.spectra.board.domain.entity.Board;
+import com.spectra.board.domain.entity.board.Posting;
 import com.spectra.board.domain.granule.PostInfo;
 
 public interface BoardStore
 {
-    void create(Board board);
+    void create(Posting posting);
 
-    Board retrieve(String boardId);
+    Posting retrieve(String boardId);
 
-    void update(Board board);
+    void update(Posting posting);
 
-    List<Board> retrieveByParentPostInfo(PostInfo postInfo);
+    List<Posting> retrieveByParentPostInfo(PostInfo postInfo);
 }

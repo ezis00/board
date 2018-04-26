@@ -1,12 +1,12 @@
 package com.spectra.board.domain.store;
 
-import com.spectra.board.domain.entity.Reply;
+import com.spectra.board.domain.entity.board.Comment;
 
 public interface ReplyStore
 {
-    void create(Reply reply);
+    void create(Comment comment);
 
-    Reply retrieve(String replyId);
+    Comment retrieve(String replyId);
 
-    void update(Reply reply);
+    void update(Comment comment);
 }

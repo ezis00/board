@@ -6,13 +6,13 @@
 
     <parent>
         <groupId>com.spectra</groupId>
-        <artifactId>board-pom</artifactId>
+        <artifactId>posting-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <groupId>com.spectra</groupId>
-    <artifactId>board-domain</artifactId>
+    <artifactId>posting-domain</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>

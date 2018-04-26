@@ -3,7 +3,7 @@ package com.spectra.board.store.map;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.spectra.board.domain.entity.Channel;
+import com.spectra.board.domain.entity.board.Channel;
 import com.spectra.board.domain.store.ChannelStore;
 
 public class ChannelMapStore implements ChannelStore

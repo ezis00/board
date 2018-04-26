@@ -1,6 +1,6 @@
 package com.spectra.board.domain.store;
 
-import com.spectra.board.domain.entity.SurveyResult;
+import com.spectra.board.domain.entity.board.survey.SurveyResult;
 
 public interface SurveyResultStore
 {

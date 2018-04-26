@@ -1,6 +1,6 @@
 package com.spectra.board.domain.spec;
 
-import com.spectra.board.domain.entity.SurveyResult;
+import com.spectra.board.domain.entity.board.survey.SurveyResult;
 
 public interface SurveyResultService
 {

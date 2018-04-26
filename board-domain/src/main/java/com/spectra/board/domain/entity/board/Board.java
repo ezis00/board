@@ -1,18 +1,27 @@
-package com.spectra.board.domain.entity;
+package com.spectra.board.domain.entity.board;
 
 import java.util.Optional;
 
+import com.spectra.board.domain.entity.Entity;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 
-public abstract class Post extends Entity
+public abstract class Board extends Entity
 {
     private final Optional<PostInfo> parentPostInfo;
     private final String writerId;
     private final long postDate;
 
-    public Post(PostInfo parentPostInfo, String writerId)
+    public Board(PostInfo parentPostInfo, String writerId)
     {
+        this.parentPostInfo = Optional.ofNullable(parentPostInfo);
+        this.writerId = writerId;
+        this.postDate = System.currentTimeMillis();
+    }
+
+    public Board(String id, PostInfo parentPostInfo, String writerId)
+    {
+        super(id);
         this.parentPostInfo = Optional.ofNullable(parentPostInfo);
         this.writerId = writerId;
         this.postDate = System.currentTimeMillis();
@@ -43,7 +52,7 @@ public abstract class Post extends Entity
     @Override
     public String toString()
     {
-        return "Post{" +
+        return "Board{" +
                 "parentPostInfo=" + parentPostInfo +
                 ", writerId='" + writerId + '\'' +
                 ", postDate=" + postDate +

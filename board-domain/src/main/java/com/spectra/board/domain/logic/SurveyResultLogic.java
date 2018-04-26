@@ -1,6 +1,6 @@
 package com.spectra.board.domain.logic;
 
-import com.spectra.board.domain.entity.SurveyResult;
+import com.spectra.board.domain.entity.board.survey.SurveyResult;
 import com.spectra.board.domain.spec.SurveyResultService;
 import com.spectra.board.domain.store.SurveyResultStore;
 

@@ -1,5 +1,8 @@
 package com.spectra.board.domain.entity;
 
+import java.util.List;
+
+import com.spectra.board.domain.entity.board.Posting;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 
@@ -7,6 +10,8 @@ public class Tag extends Entity
 {
     private final String name;
     private final long createdDate;
+
+    transient private List<Posting> postingList;
 
     public Tag(String name)
     {

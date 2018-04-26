@@ -1,5 +1,7 @@
-package com.spectra.board.domain.entity;
+package com.spectra.board.domain.entity.board.survey;
 
+import com.spectra.board.domain.entity.Entity;
+import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 

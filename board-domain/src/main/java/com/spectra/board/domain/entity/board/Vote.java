@@ -1,12 +1,13 @@
-package com.spectra.board.domain.entity;
+package com.spectra.board.domain.entity.board;
 
+import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.granule.VoteType;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 
-public class Vote extends Post
+public class Vote extends Board
 {
     private final PostType postType = PostType.BOARD;
     private final VoteType voteType;
@@ -51,6 +52,6 @@ public class Vote extends Post
 
     public static Vote getSample()
     {
-        return new Vote(Board.getNotifySample().getCurrentPostInfo(), User.getAdminSample().getId(), VoteType.HAPPY);
+        return new Vote(Posting.getNotifySample().getCurrentPostInfo(), User.getAdminSample().getId(), VoteType.HAPPY);
     }
 }

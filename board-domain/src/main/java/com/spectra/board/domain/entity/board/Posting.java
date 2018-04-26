@@ -1,8 +1,10 @@
-package com.spectra.board.domain.entity;
+package com.spectra.board.domain.entity.board;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
+import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.granule.Attach;
 import com.spectra.board.domain.granule.AttachType;
 import com.spectra.board.domain.granule.BoardAttachSet;
@@ -17,7 +19,7 @@ import com.spectra.board.domain.share.granule.IdSet;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 
-public class Board extends Post
+public class Posting extends Board
 {
     private final PostType postType = PostType.BOARD;
     private String title;
@@ -30,12 +32,14 @@ public class Board extends Post
     private Notify notify;
     private int viewCount;
 
-    public Board(String writerId)
+    transient private List<Board> boardList;
+
+    public Posting(String writerId)
     {
         this(null, writerId);
     }
 
-    public Board(PostInfo parentPostInfo, String writerId)
+    public Posting(PostInfo parentPostInfo, String writerId)
     {
         super(parentPostInfo, writerId);
         this.optionMap = new BoardOptionMap();
@@ -141,19 +145,16 @@ public class Board extends Post
         this.viewCount = viewCount;
     }
 
-    @Override
-    public String toString()
+    public static Posting getNotifySample()
     {
-        return "Board{" +
-                "postType=" + postType +
-                ", title='" + title + '\'' +
-                ", contents='" + contents + '\'' +
-                ", optionMap=" + optionMap +
-                ", attachSet=" + attachSet +
-                ", viewerIdSet=" + viewerIdSet +
-                ", tagIdSet=" + tagIdSet +
-                ", viewCount=" + viewCount +
-                "} " + super.toString();
+        Posting posting = new Posting(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
+        posting.setTitle("회식 설문조사 안내");
+        posting.setContents("차주에 진행되는 회식과 관련해서 아래 항목의 설문에 응답 부탁드립니다.");
+        posting.addBoardOption(BoardOptionKey.NOTICE, Boolean.toString(true));
+        Notify notify = new Notify("20180424120000", "20180428120000", Arrays.asList(Level.EMAIL, Level.SMS));
+        notify.addNotifyOption(NotifyOptionKey.REPORT_ME_FLAG, Boolean.toString(true));
+        posting.setNotify(notify);
+        return posting;
     }
 
     public void setValues(NameValueList nameValueList)
@@ -194,34 +195,37 @@ public class Board extends Post
         }
     }
 
-    public static Board getNotifySample()
+    public static Posting getNoticeSample()
     {
-        Board board = new Board(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
-        board.setTitle("회식 설문조사 안내");
-        board.setContents("차주에 진행되는 회식과 관련해서 아래 항목의 설문에 응답 부탁드립니다.");
-        board.addBoardOption(BoardOptionKey.NOTICE, Boolean.toString(true));
-        Notify notify = new Notify("20180424120000", "20180428120000", Arrays.asList(Level.EMAIL, Level.SMS));
-        notify.addNotifyOption(NotifyOptionKey.REPORT_ME_FLAG, Boolean.toString(true));
-        board.setNotify(notify);
-        return board;
+        Posting posting = new Posting(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
+        posting.setTitle("사내 보안 프로그램 패치 공유");
+        posting.setContents("아래 보안 프로그램을 꼭 설치 부탁드립니다..");
+        posting.addBoardOption(BoardOptionKey.NOTICE, Boolean.toString(true));
+        posting.addAttach(new Attach(AttachType.EXE, "보안프로그램패치파일"));
+        return posting;
     }
 
-    public static Board getNoticeSample()
+    public static Posting getPrivateSample()
     {
-        Board board = new Board(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
-        board.setTitle("사내 보안 프로그램 패치 공유");
-        board.setContents("아래 보안 프로그램을 꼭 설치 부탁드립니다..");
-        board.addBoardOption(BoardOptionKey.NOTICE, Boolean.toString(true));
-        board.addAttach(new Attach(AttachType.EXE, "보안프로그램패치파일"));
-        return board;
+        Posting posting = new Posting(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
+        posting.setTitle("작성중");
+        posting.setContents("작성중인 글입니다.");
+        posting.addBoardOption(BoardOptionKey.PRIVATE, Boolean.toString(true));
+        return posting;
     }
 
-    public static Board getPrivateSample()
+    @Override
+    public String toString()
     {
-        Board board = new Board(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
-        board.setTitle("작성중");
-        board.setContents("작성중인 글입니다.");
-        board.addBoardOption(BoardOptionKey.PRIVATE, Boolean.toString(true));
-        return board;
+        return "Posting{" +
+                "postType=" + postType +
+                ", title='" + title + '\'' +
+                ", contents='" + contents + '\'' +
+                ", optionMap=" + optionMap +
+                ", attachSet=" + attachSet +
+                ", viewerIdSet=" + viewerIdSet +
+                ", tagIdSet=" + tagIdSet +
+                ", viewCount=" + viewCount +
+                "} " + super.toString();
     }
 }

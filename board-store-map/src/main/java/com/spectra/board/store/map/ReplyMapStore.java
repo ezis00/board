@@ -3,12 +3,12 @@ package com.spectra.board.store.map;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.spectra.board.domain.entity.Reply;
+import com.spectra.board.domain.entity.board.Comment;
 import com.spectra.board.domain.store.ReplyStore;
 
 public class ReplyMapStore implements ReplyStore
 {
-    private Map<String, Reply> map;
+    private Map<String, Comment> map;
 
     public ReplyMapStore()
     {
@@ -16,20 +16,20 @@ public class ReplyMapStore implements ReplyStore
     }
 
     @Override
-    public void create(Reply reply)
+    public void create(Comment comment)
     {
-        this.map.put(reply.getId(), reply);
+        this.map.put(comment.getId(), comment);
     }
 
     @Override
-    public Reply retrieve(String replyId)
+    public Comment retrieve(String replyId)
     {
         return this.map.get(replyId);
     }
 
     @Override
-    public void update(Reply reply)
+    public void update(Comment comment)
     {
-        this.map.put(reply.getId(), reply);
+        this.map.put(comment.getId(), comment);
     }
 }

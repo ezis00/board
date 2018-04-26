@@ -1,6 +1,6 @@
 package com.spectra.board.domain.store;
 
-import com.spectra.board.domain.entity.Channel;
+import com.spectra.board.domain.entity.board.Channel;
 
 public interface ChannelStore
 {

@@ -1,6 +1,6 @@
 package com.spectra.board.domain.logic;
 
-import com.spectra.board.domain.entity.Channel;
+import com.spectra.board.domain.entity.board.Channel;
 import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.spec.ChannelService;
 import com.spectra.board.domain.store.ChannelStore;

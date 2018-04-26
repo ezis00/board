@@ -1,6 +1,6 @@
 package com.spectra.board.domain.logic;
 
-import com.spectra.board.domain.entity.Vote;
+import com.spectra.board.domain.entity.board.Vote;
 import com.spectra.board.domain.spec.VoteService;
 import com.spectra.board.domain.store.VoteStore;
 

@@ -2,17 +2,17 @@ package com.spectra.board.domain.spec;
 
 import java.util.List;
 
-import com.spectra.board.domain.entity.Board;
-import com.spectra.board.domain.share.granule.NameValueList;
+import com.spectra.board.domain.entity.board.Posting;
 import com.spectra.board.domain.granule.PostInfo;
+import com.spectra.board.domain.share.granule.NameValueList;
 
 public interface BoardService
 {
-    String register(Board board);
+    String register(Posting posting);
 
-    Board find(String boardId);
+    Posting find(String boardId);
 
     void modify(String boardId, NameValueList nameValueList);
 
-    List<Board> findByParentPostInfo(PostInfo postInfo);
+    List<Posting> findByParentPostInfo(PostInfo postInfo);
 }

@@ -1,6 +1,6 @@
 package com.spectra.board.domain.logic;
 
-import com.spectra.board.domain.entity.Reply;
+import com.spectra.board.domain.entity.board.Comment;
 import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.spec.ReplyService;
 import com.spectra.board.domain.store.ReplyStore;
@@ -15,14 +15,14 @@ public class ReplyLogic implements ReplyService
     }
 
     @Override
-    public String register(Reply reply)
+    public String register(Comment comment)
     {
-        replyStore.create(reply);
-        return reply.getId();
+        replyStore.create(comment);
+        return comment.getId();
     }
 
     @Override
-    public Reply find(String replyId)
+    public Comment find(String replyId)
     {
         return replyStore.retrieve(replyId);
     }
@@ -30,8 +30,8 @@ public class ReplyLogic implements ReplyService
     @Override
     public void modify(String replyId, NameValueList nameValueList)
     {
-        Reply reply = find(replyId);
-        reply.setValues(nameValueList);
-        replyStore.update(reply);
+        Comment comment = find(replyId);
+        comment.setValues(nameValueList);
+        replyStore.update(comment);
     }
 }

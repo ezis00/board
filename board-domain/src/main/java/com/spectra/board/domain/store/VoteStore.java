@@ -1,6 +1,6 @@
 package com.spectra.board.domain.store;
 
-import com.spectra.board.domain.entity.Vote;
+import com.spectra.board.domain.entity.board.Vote;
 
 public interface VoteStore
 {

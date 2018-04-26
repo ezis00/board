@@ -1,7 +1,9 @@
-package com.spectra.board.domain.entity;
+package com.spectra.board.domain.entity.board;
 
+import java.util.List;
 import java.util.Set;
 
+import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.granule.ChannelOptionKey;
 import com.spectra.board.domain.granule.ChannelOptionMap;
 import com.spectra.board.domain.granule.PostInfo;
@@ -10,12 +12,14 @@ import com.spectra.board.domain.share.granule.IdSet;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 
-public class Channel extends Post
+public class Channel extends Board
 {
     private final PostType postType = PostType.CHANNEL;
     private final String name;
     private ChannelOptionMap channelOptionMap;
     private IdSet memberIdSet;
+
+    transient private List<Board> boardList;
 
     public Channel(String writerId, String name)
     {

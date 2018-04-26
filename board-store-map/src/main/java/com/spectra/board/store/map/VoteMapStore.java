@@ -3,7 +3,7 @@ package com.spectra.board.store.map;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.spectra.board.domain.entity.Vote;
+import com.spectra.board.domain.entity.board.Vote;
 import com.spectra.board.domain.store.VoteStore;
 
 public class VoteMapStore implements VoteStore
