@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.spectra.share.util.JsonUtil;
 
-public class BoardAttachSet
+public class BoardAttachSet implements ValueObject
 {
     private Set<Attach> set;
 

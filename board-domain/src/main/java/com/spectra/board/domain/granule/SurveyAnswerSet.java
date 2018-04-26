@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.spectra.share.util.JsonUtil;
 
-public class SurveyAnswerSet
+public class SurveyAnswerSet implements ValueObject
 {
     private Set<SurveyAnswer> set;
 

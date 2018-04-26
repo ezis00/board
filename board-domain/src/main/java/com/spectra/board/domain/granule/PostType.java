@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum PostType
+public enum PostType implements ValueObject
 {
     CHANNEL, BOARD, SURVEY, REPLY, VOTE;
 

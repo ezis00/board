@@ -6,7 +6,7 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 import com.spectra.share.util.JsonUtil;
 
-public class NotifyOptionMap
+public class NotifyOptionMap implements ValueObject
 {
     private Map<NotifyOptionKey, String> map;
 

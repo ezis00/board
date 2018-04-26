@@ -6,7 +6,7 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 import com.spectra.share.util.JsonUtil;
 
-public class ChannelOptionMap
+public class ChannelOptionMap implements ValueObject
 {
     private Map<ChannelOptionKey, String> map;
 

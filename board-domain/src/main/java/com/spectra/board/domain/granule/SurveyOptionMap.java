@@ -6,7 +6,7 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 import com.spectra.share.util.JsonUtil;
 
-public class SurveyOptionMap
+public class SurveyOptionMap implements ValueObject
 {
     private Map<SurveyOptionKey, String> map;
 

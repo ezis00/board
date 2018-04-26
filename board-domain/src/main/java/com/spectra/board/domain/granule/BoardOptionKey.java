@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum BoardOptionKey
+public enum BoardOptionKey implements ValueObject
 {
     NOTICE,     // 공지
     PRIVATE;    // 비공개

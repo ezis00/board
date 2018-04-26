@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public class PostInfo
+public class PostInfo implements ValueObject
 {
     private final PostType postType;
     private final String postId;

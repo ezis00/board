@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum ChannelOptionKey
+public enum ChannelOptionKey implements ValueObject
 {
     PRIVATE,                // 공개 여부
     ATTACH_MAX_SIZE_MB,     // 첨부파일 최대 크기

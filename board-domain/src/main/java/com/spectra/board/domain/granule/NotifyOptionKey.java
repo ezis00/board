@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum NotifyOptionKey
+public enum NotifyOptionKey implements ValueObject
 {
     REPORT_ME_FLAG; //나에게 알림
 

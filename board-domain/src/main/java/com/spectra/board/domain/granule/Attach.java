@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public class Attach
+public class Attach implements ValueObject
 {
     private final AttachType attachType;
     private final String attachId;

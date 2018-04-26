@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum  Level
+public enum Level implements ValueObject
 {
     EMAIL, SMS;
 

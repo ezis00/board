@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum UserType
+public enum UserType implements ValueObject
 {
     ADMIN, MANAGER, USER;
 

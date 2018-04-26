@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.spectra.share.util.JsonUtil;
 
-public class Notify
+public class Notify implements ValueObject
 {
     private final String startDate;
     private final String endDate;

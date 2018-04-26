@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public class SurveyAnswer
+public class SurveyAnswer implements ValueObject
 {
     private final SurveyAnswerType surveyAnswerType;
     private final String contents;

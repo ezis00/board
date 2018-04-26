@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum SurveyAnswerType
+public enum SurveyAnswerType implements ValueObject
 {
     DATE, TIME, TEXT, IMAGE;
 

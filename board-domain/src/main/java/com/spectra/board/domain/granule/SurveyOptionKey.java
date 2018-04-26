@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum SurveyOptionKey
+public enum SurveyOptionKey implements ValueObject
 {
     ALLOW_MULTI_SELECT, // 복수 선택 허용
     ALLOW_ANONYMOUS,    // 익명투표 허용

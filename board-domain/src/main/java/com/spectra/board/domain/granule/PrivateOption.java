@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum PrivateOption
+public enum PrivateOption implements ValueObject
 {
     PRIVATE, PUBLIC, CLOSED;
 

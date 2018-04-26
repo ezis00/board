@@ -2,7 +2,7 @@ package com.spectra.board.domain.granule;
 
 import com.spectra.share.util.JsonUtil;
 
-public enum VoteType
+public enum VoteType implements ValueObject
 {
     LOVE, LIKE, DISLIKE, HAPPY, SAD;
 
