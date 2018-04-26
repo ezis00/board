@@ -1,7 +1,6 @@
 package com.spectra.board.domain.logic;
 
 import com.spectra.board.domain.entity.Vote;
-import com.spectra.board.domain.granule.NameValueList;
 import com.spectra.board.domain.spec.VoteService;
 import com.spectra.board.domain.store.VoteStore;
 

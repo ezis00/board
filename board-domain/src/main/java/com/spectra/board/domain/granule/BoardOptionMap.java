@@ -15,6 +15,11 @@ public class BoardOptionMap
         this.boardOptionMap = new HashMap<>();
     }
 
+    public BoardOptionMap(BoardOptionKey boardOptionKey, String value)
+    {
+        this.boardOptionMap.put(boardOptionKey, value);
+    }
+
     public String get(BoardOptionKey boardOptionKey)
     {
         return this.boardOptionMap.get(boardOptionKey);

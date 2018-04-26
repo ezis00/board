@@ -1,4 +1,4 @@
-package com.spectra.board.domain.granule;
+package com.spectra.board.domain.share.granule;
 
 import java.util.StringTokenizer;
 

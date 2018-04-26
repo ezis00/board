@@ -1,7 +1,7 @@
 package com.spectra.board.domain.logic;
 
 import com.spectra.board.domain.entity.Survey;
-import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.spec.SurveyService;
 import com.spectra.board.domain.store.SurveyStore;
 

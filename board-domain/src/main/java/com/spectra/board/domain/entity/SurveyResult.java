@@ -1,6 +1,6 @@
 package com.spectra.board.domain.entity;
 
-import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.share.granule.NameValueList;
 
 public class SurveyResult extends Entity
 {

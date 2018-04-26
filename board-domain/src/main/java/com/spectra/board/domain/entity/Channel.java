@@ -2,11 +2,11 @@ package com.spectra.board.domain.entity;
 
 import java.util.Set;
 
-import com.spectra.board.domain.granule.ChannelMemberIdSet;
+import com.spectra.board.domain.share.granule.IdSet;
 import com.spectra.board.domain.granule.ChannelOptionKey;
 import com.spectra.board.domain.granule.ChannelOptionMap;
-import com.spectra.board.domain.granule.NameValue;
-import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.share.granule.NameValue;
+import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 
@@ -15,7 +15,7 @@ public class Channel extends Post
     private final PostType postType = PostType.CHANNEL;
     private final String name;
     private ChannelOptionMap channelOptionMap;
-    private ChannelMemberIdSet channelMemberIdSet;
+    private IdSet idSet;
 
     public Channel(String writerId, String name)
     {
@@ -27,7 +27,7 @@ public class Channel extends Post
         super(parentPostInfo, writerId);
         this.name = name;
         this.channelOptionMap = new ChannelOptionMap();
-        this.channelMemberIdSet = new ChannelMemberIdSet();
+        this.idSet = new IdSet();
     }
 
     public PostType getPostType()
@@ -52,17 +52,17 @@ public class Channel extends Post
 
     public Set<String> getMemberIdSet()
     {
-        return channelMemberIdSet.getAll();
+        return idSet.getAll();
     }
 
     public void addMemberId(String memberId)
     {
-        this.channelMemberIdSet.add(memberId);
+        this.idSet.add(memberId);
     }
 
-    public void setMemberIdSet(ChannelMemberIdSet channelMemberIdSet)
+    public void setMemberIdSet(IdSet idSet)
     {
-        this.channelMemberIdSet = channelMemberIdSet;
+        this.idSet = idSet;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class Channel extends Post
         return "Channel{" +
                 "name='" + name + '\'' +
                 ", channelOptionMap=" + channelOptionMap +
-                ", channelMemberIdSet=" + channelMemberIdSet +
+                ", idSet=" + idSet +
                 "} " + super.toString();
     }
 
@@ -85,8 +85,8 @@ public class Channel extends Post
                 case "channelOptionMap":
                     this.channelOptionMap = ChannelOptionMap.fromJson(value);
                     break;
-                case "channelMemberIdSet":
-                    this.channelMemberIdSet = ChannelMemberIdSet.fromJson(value);
+                case "idSet":
+                    this.idSet = IdSet.fromJson(value);
                     break;
                 default:
                     throw new RuntimeException("Undefined field:" + nameValue.getName());

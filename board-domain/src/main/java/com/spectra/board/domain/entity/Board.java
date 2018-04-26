@@ -6,10 +6,9 @@ import com.spectra.board.domain.granule.Attach;
 import com.spectra.board.domain.granule.BoardAttachSet;
 import com.spectra.board.domain.granule.BoardOptionKey;
 import com.spectra.board.domain.granule.BoardOptionMap;
-import com.spectra.board.domain.granule.BoardTagIdSet;
-import com.spectra.board.domain.granule.BoardViewerIdSet;
-import com.spectra.board.domain.granule.NameValue;
-import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.share.granule.IdSet;
+import com.spectra.board.domain.share.granule.NameValue;
+import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.granule.Notify;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
@@ -22,8 +21,8 @@ public class Board extends Post
     private long lastUpdateDate;
     private BoardOptionMap optionMap;
     private BoardAttachSet attachSet;
-    private BoardViewerIdSet viewerIdSet;
-    private BoardTagIdSet tagIdSet;
+    private IdSet viewerIdSet;
+    private IdSet tagIdSet;
     private Notify notify;
     private int viewCount;
 
@@ -37,8 +36,8 @@ public class Board extends Post
         super(parentPostInfo, writerId);
         this.optionMap = new BoardOptionMap();
         this.attachSet = new BoardAttachSet();
-        this.viewerIdSet = new BoardViewerIdSet();
-        this.tagIdSet = new BoardTagIdSet();
+        this.viewerIdSet = new IdSet();
+        this.tagIdSet = new IdSet();
         this.viewCount = 0;
     }
 
@@ -171,10 +170,10 @@ public class Board extends Post
                     this.attachSet = BoardAttachSet.fromJson(value);
                     break;
                 case "viewerIdSet":
-                    this.viewerIdSet = BoardViewerIdSet.fromJson(value);
+                    this.viewerIdSet = IdSet.fromJson(value);
                     break;
                 case "tagIdSet":
-                    this.tagIdSet = BoardTagIdSet.fromJson(value);
+                    this.tagIdSet = IdSet.fromJson(value);
                     break;
                 case "viewCount":
                     this.viewCount = Integer.parseInt(value);

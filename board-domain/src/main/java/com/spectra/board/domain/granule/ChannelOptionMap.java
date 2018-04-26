@@ -15,6 +15,11 @@ public class ChannelOptionMap
         this.channelOptionMap = new HashMap<>();
     }
 
+    public ChannelOptionMap(ChannelOptionKey channelOptionKey, String value)
+    {
+        this.channelOptionMap.put(channelOptionKey, value);
+    }
+
     public String get(ChannelOptionKey channelOptionKey)
     {
         return this.channelOptionMap.get(channelOptionKey);

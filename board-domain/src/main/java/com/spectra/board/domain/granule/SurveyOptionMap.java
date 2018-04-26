@@ -15,6 +15,11 @@ public class SurveyOptionMap
         this.surveyOptionMap = new HashMap<>();
     }
 
+    public SurveyOptionMap(SurveyOptionKey surveyOptionKey, String value)
+    {
+        this.surveyOptionMap.put(surveyOptionKey, value);
+    }
+
     public String get(SurveyOptionKey surveyOptionKey)
     {
         return this.surveyOptionMap.get(surveyOptionKey);

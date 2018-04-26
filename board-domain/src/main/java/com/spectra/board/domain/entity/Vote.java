@@ -1,7 +1,7 @@
 package com.spectra.board.domain.entity;
 
-import com.spectra.board.domain.granule.NameValue;
-import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.share.granule.NameValue;
+import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.granule.VoteType;

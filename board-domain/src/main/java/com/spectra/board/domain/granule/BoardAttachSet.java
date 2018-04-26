@@ -14,9 +14,9 @@ public class BoardAttachSet
         this.attachList = new HashSet<>();
     }
 
-    public BoardAttachSet(Set<Attach> attachList)
+    public BoardAttachSet(Attach attach)
     {
-        this.attachList = attachList;
+        this.attachList.add(attach);
     }
 
     public Set<Attach> getAll()
@@ -37,7 +37,7 @@ public class BoardAttachSet
     @Override
     public String toString()
     {
-        return "ChannelMemberIdSet{" +
+        return "IdSet{" +
                 "attachList=" + attachList +
                 '}';
     }

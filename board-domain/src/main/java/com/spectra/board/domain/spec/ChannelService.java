@@ -1,7 +1,7 @@
 package com.spectra.board.domain.spec;
 
 import com.spectra.board.domain.entity.Channel;
-import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.share.granule.NameValueList;
 
 public interface ChannelService
 {

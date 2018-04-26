@@ -3,7 +3,7 @@
  * This software is the proprietary of Nextree Consulting.
  */
 
-package com.spectra.board.domain.granule;
+package com.spectra.board.domain.share.granule;
 
 import java.util.ArrayList;
 import java.util.List;

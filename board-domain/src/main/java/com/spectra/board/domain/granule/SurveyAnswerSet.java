@@ -14,9 +14,9 @@ public class SurveyAnswerSet
         this.answerSet = new HashSet<>();
     }
 
-    public SurveyAnswerSet(Set<SurveyAnswer> answerSet)
+    public SurveyAnswerSet(SurveyAnswer answer)
     {
-        this.answerSet = answerSet;
+        this.answerSet.add(answer);
     }
 
     public Set<SurveyAnswer> getAll()
@@ -37,7 +37,7 @@ public class SurveyAnswerSet
     @Override
     public String toString()
     {
-        return "ChannelMemberIdSet{" +
+        return "IdSet{" +
                 "answerSet=" + answerSet +
                 '}';
     }

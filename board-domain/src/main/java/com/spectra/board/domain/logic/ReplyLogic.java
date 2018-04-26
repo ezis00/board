@@ -1,9 +1,7 @@
 package com.spectra.board.domain.logic;
 
-import java.util.List;
-
 import com.spectra.board.domain.entity.Reply;
-import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.spec.ReplyService;
 import com.spectra.board.domain.store.ReplyStore;
 

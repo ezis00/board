@@ -2,7 +2,7 @@ package com.spectra.board.domain.entity;
 
 import java.util.UUID;
 
-import com.spectra.board.domain.granule.NameValueList;
+import com.spectra.board.domain.share.granule.NameValueList;
 
 public abstract class Entity
 {
