@@ -29,4 +29,24 @@ public class Attach
                 ", attachId='" + attachId + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Attach attach = (Attach) o;
+
+        if (attachType != attach.attachType) return false;
+        return attachId != null ? attachId.equals(attach.attachId) : attach.attachId == null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = attachType != null ? attachType.hashCode() : 0;
+        result = 31 * result + (attachId != null ? attachId.hashCode() : 0);
+        return result;
+    }
 }

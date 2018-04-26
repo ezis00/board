@@ -10,4 +10,9 @@ public enum UserType
     {
         return JsonUtil.fromJson(value, UserType.class);
     }
+
+    public static String toJson(UserType object)
+    {
+        return JsonUtil.toJson(object);
+    }
 }

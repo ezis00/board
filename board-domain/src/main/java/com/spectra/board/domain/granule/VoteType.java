@@ -10,4 +10,9 @@ public enum VoteType
     {
         return JsonUtil.fromJson(value, VoteType.class);
     }
+
+    public static String toJson(VoteType object)
+    {
+        return JsonUtil.toJson(object);
+    }
 }
