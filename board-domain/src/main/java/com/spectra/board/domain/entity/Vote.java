@@ -1,15 +1,15 @@
 package com.spectra.board.domain.entity;
 
-import com.spectra.board.domain.share.granule.NameValue;
-import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.granule.VoteType;
+import com.spectra.board.domain.share.granule.NameValue;
+import com.spectra.board.domain.share.granule.NameValueList;
 
 public class Vote extends Post
 {
     private final PostType postType = PostType.BOARD;
-    private VoteType voteType;
+    private final VoteType voteType;
 
     public Vote(PostInfo parentPostInfo, String writerId, VoteType voteType)
     {
@@ -33,12 +33,8 @@ public class Vote extends Post
     {
         for (NameValue nameValue : nameValueList.getList())
         {
-            String value = nameValue.getValue();
             switch (nameValue.getName())
             {
-                case "voteType":
-                    this.voteType = VoteType.fromJson(value);
-                    break;
                 default:
                     throw new RuntimeException("Undefined field:" + nameValue.getName());
             }
@@ -51,5 +47,10 @@ public class Vote extends Post
         return "Vote{" +
                 "voteType=" + voteType +
                 "} " + super.toString();
+    }
+
+    public static Vote getSample()
+    {
+        return new Vote(Board.getNotifySample().getCurrentPostInfo(), User.getAdminSample().getId(), VoteType.HAPPY);
     }
 }

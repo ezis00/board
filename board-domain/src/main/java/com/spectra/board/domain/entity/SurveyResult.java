@@ -1,5 +1,6 @@
 package com.spectra.board.domain.entity;
 
+import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 
 public class SurveyResult extends Entity
@@ -38,10 +39,9 @@ public class SurveyResult extends Entity
         return date;
     }
 
-    @Override
-    public void setValues(NameValueList nameValueList)
+    public static SurveyResult getSample()
     {
-
+        return new SurveyResult(Survey.getWhatSample().getId(), User.getAdminSample().getId(), Survey.getWhatSample().getAnswerSet().getAll().iterator().next().getContents());
     }
 
     @Override
@@ -53,5 +53,18 @@ public class SurveyResult extends Entity
                 ", answerContents='" + answerContents + '\'' +
                 ", date=" + date +
                 "} " + super.toString();
+    }
+
+    @Override
+    public void setValues(NameValueList nameValueList)
+    {
+        for (NameValue nameValue : nameValueList.getList())
+        {
+            switch (nameValue.getName())
+            {
+                default:
+                    throw new RuntimeException("Undefined field:" + nameValue.getName());
+            }
+        }
     }
 }

@@ -1,9 +1,9 @@
 package com.spectra.board.domain.entity;
 
-import com.spectra.board.domain.share.granule.NameValue;
-import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
+import com.spectra.board.domain.share.granule.NameValue;
+import com.spectra.board.domain.share.granule.NameValueList;
 
 public class Reply extends Post
 {
@@ -31,9 +31,22 @@ public class Reply extends Post
         return contents;
     }
 
+    public static Reply getSample()
+    {
+        Reply reply = new Reply(Board.getNoticeSample().getCurrentPostInfo(), User.getAdminSample().getId());
+        reply.setContents("무플 방지 위원회에서 나왔습니다.");
+        reply.setLastUpdateDate(System.currentTimeMillis());
+        return reply;
+    }
+
     public long getLastUpdateDate()
     {
         return lastUpdateDate;
+    }
+
+    public void setContents(String contents)
+    {
+        this.contents = contents;
     }
 
     @Override
@@ -57,5 +70,10 @@ public class Reply extends Post
                     throw new RuntimeException("Undefined field:" + nameValue.getName());
             }
         }
+    }
+
+    public void setLastUpdateDate(long lastUpdateDate)
+    {
+        this.lastUpdateDate = lastUpdateDate;
     }
 }

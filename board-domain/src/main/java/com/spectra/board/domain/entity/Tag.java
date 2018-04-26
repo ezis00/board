@@ -1,5 +1,6 @@
 package com.spectra.board.domain.entity;
 
+import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 
 public class Tag extends Entity
@@ -14,10 +15,9 @@ public class Tag extends Entity
         this.createdDate = System.currentTimeMillis();
     }
 
-    @Override
-    public void setValues(NameValueList nameValueList)
+    public static Tag getSample()
     {
-
+        return new Tag("기타");
     }
 
     public String getName()
@@ -37,5 +37,18 @@ public class Tag extends Entity
                 "name='" + name + '\'' +
                 ", createdDate=" + createdDate +
                 "} " + super.toString();
+    }
+
+    @Override
+    public void setValues(NameValueList nameValueList)
+    {
+        for (NameValue nameValue : nameValueList.getList())
+        {
+            switch (nameValue.getName())
+            {
+                default:
+                    throw new RuntimeException("Undefined field:" + nameValue.getName());
+            }
+        }
     }
 }
