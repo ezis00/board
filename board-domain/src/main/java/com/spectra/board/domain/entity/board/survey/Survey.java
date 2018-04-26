@@ -1,5 +1,6 @@
 package com.spectra.board.domain.entity.board.survey;
 
+import java.util.List;
 import java.util.Set;
 
 import com.spectra.board.domain.entity.User;
@@ -24,6 +25,8 @@ public class Survey extends Board
     private SurveyOptionMap optionMap;
     private long expiredDate;
     private long lastUpdateDate;
+
+    transient private List<SurveyResult> surveyResultList;
 
     public Survey(PostInfo parentPostInfo, String title, String writerId)
     {

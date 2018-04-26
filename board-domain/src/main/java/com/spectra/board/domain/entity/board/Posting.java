@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.spectra.board.domain.entity.Tag;
 import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.granule.Attach;
 import com.spectra.board.domain.granule.AttachType;
@@ -32,7 +33,10 @@ public class Posting extends Board
     private Notify notify;
     private int viewCount;
 
-    transient private List<Board> boardList;
+    transient private List<Comment> commentList;
+    transient private List<Posting> postingList;
+    transient private List<Vote> voteList;
+    transient private List<Tag> tagList;
 
     public Posting(String writerId)
     {

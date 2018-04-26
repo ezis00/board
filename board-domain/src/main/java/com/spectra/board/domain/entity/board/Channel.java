@@ -19,7 +19,9 @@ public class Channel extends Board
     private ChannelOptionMap channelOptionMap;
     private IdSet memberIdSet;
 
-    transient private List<Board> boardList;
+    transient private List<Channel> channelList;
+    transient private List<Comment> commentList;
+    transient private List<Posting> postingList;
 
     public Channel(String writerId, String name)
     {
