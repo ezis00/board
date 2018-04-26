@@ -34,6 +34,11 @@ public class SurveyAnswerSet
         return JsonUtil.fromJson(value, SurveyAnswerSet.class);
     }
 
+    public static String toJson(SurveyAnswerSet object)
+    {
+        return JsonUtil.toJson(object);
+    }
+
     @Override
     public String toString()
     {

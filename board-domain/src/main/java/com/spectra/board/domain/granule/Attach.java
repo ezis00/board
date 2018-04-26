@@ -1,5 +1,7 @@
 package com.spectra.board.domain.granule;
 
+import com.spectra.share.util.JsonUtil;
+
 public class Attach
 {
     private final AttachType attachType;
@@ -19,6 +21,16 @@ public class Attach
     public String getAttachId()
     {
         return attachId;
+    }
+
+    public static Attach fromJson(String value)
+    {
+        return JsonUtil.fromJson(value, Attach.class);
+    }
+
+    public static String toJson(Attach object)
+    {
+        return JsonUtil.toJson(object);
     }
 
     @Override

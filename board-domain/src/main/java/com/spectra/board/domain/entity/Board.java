@@ -167,6 +167,9 @@ public class Board extends Post
                 case "title":
                     this.title = value;
                     break;
+                case "contents":
+                    this.contents = value;
+                    break;
                 case "optionMap":
                     this.optionMap = BoardOptionMap.fromJson(value);
                     break;
@@ -179,11 +182,11 @@ public class Board extends Post
                 case "tagIdSet":
                     this.tagIdSet = IdSet.fromJson(value);
                     break;
+                case "notify":
+                    this.notify = Notify.fromJson(value);
+                    break;
                 case "viewCount":
                     this.viewCount = Integer.parseInt(value);
-                    break;
-                case "contents":
-                    this.contents = value;
                     break;
                 default:
                     throw new RuntimeException("Undefined field:" + nameValue.getName());

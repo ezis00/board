@@ -35,9 +35,9 @@ public class BoardOptionMap
         return JsonUtil.fromJson(value, new TypeToken<Map<BoardOptionKey, String>>() {}.getType());
     }
 
-    public static String toJson(Map<BoardOptionKey, String> boardOptionMap)
+    public static String toJson(BoardOptionMap object)
     {
-        return JsonUtil.toJson(boardOptionMap);
+        return JsonUtil.toJson(object);
     }
 
     @Override

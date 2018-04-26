@@ -35,9 +35,9 @@ public class ChannelOptionMap
         return JsonUtil.fromJson(value, new TypeToken<Map<ChannelOptionKey, String>>() {}.getType());
     }
 
-    public static String toJson(Map<ChannelOptionKey, String> channelOptionMap)
+    public static String toJson(ChannelOptionMap object)
     {
-        return JsonUtil.toJson(channelOptionMap);
+        return JsonUtil.toJson(object);
     }
 
     @Override

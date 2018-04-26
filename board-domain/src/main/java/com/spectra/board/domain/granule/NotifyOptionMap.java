@@ -35,9 +35,9 @@ public class NotifyOptionMap
         return JsonUtil.fromJson(value, new TypeToken<Map<NotifyOptionKey, String>>() {}.getType());
     }
 
-    public static String toJson(Map<NotifyOptionKey, String> notifyOptionMap)
+    public static String toJson(NotifyOptionMap object)
     {
-        return JsonUtil.toJson(notifyOptionMap);
+        return JsonUtil.toJson(object);
     }
 
     @Override

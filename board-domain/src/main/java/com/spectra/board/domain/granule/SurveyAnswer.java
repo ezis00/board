@@ -1,5 +1,7 @@
 package com.spectra.board.domain.granule;
 
+import com.spectra.share.util.JsonUtil;
+
 public class SurveyAnswer
 {
     private final SurveyAnswerType surveyAnswerType;
@@ -19,6 +21,16 @@ public class SurveyAnswer
     public String getContents()
     {
         return contents;
+    }
+
+    public static SurveyAnswer fromJson(String value)
+    {
+        return JsonUtil.fromJson(value, SurveyAnswer.class);
+    }
+
+    public static String toJson(SurveyAnswer object)
+    {
+        return JsonUtil.toJson(object);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.spectra.board.domain.granule;
 
+import com.spectra.share.util.JsonUtil;
+
 public class PostInfo
 {
     private final PostType postType;
@@ -19,6 +21,16 @@ public class PostInfo
     public String getPostId()
     {
         return postId;
+    }
+
+    public static PostInfo fromJson(String value)
+    {
+        return JsonUtil.fromJson(value, PostInfo.class);
+    }
+
+    public static String toJson(PostInfo object)
+    {
+        return JsonUtil.toJson(object);
     }
 
     @Override

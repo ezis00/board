@@ -2,6 +2,8 @@ package com.spectra.board.domain.granule;
 
 import java.util.List;
 
+import com.spectra.share.util.JsonUtil;
+
 public class Notify
 {
     private final String startDate;
@@ -35,6 +37,16 @@ public class Notify
     public void addNotifyOption(NotifyOptionKey notifyOptionKey, String value)
     {
         this.notifyOptionMap.put(notifyOptionKey, value);
+    }
+
+    public static Notify fromJson(String value)
+    {
+        return JsonUtil.fromJson(value, Notify.class);
+    }
+
+    public static String toJson(Notify object)
+    {
+        return JsonUtil.toJson(object);
     }
 
     @Override

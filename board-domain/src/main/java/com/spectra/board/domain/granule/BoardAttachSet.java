@@ -34,6 +34,11 @@ public class BoardAttachSet
         return JsonUtil.fromJson(value, BoardAttachSet.class);
     }
 
+    public static String toJson(BoardAttachSet object)
+    {
+        return JsonUtil.toJson(object);
+    }
+
     @Override
     public String toString()
     {
