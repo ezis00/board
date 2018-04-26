@@ -8,26 +8,26 @@ import com.spectra.share.util.JsonUtil;
 
 public class ChannelOptionMap
 {
-    private Map<ChannelOptionKey, String> channelOptionMap;
+    private Map<ChannelOptionKey, String> map;
 
     public ChannelOptionMap()
     {
-        this.channelOptionMap = new HashMap<>();
+        this.map = new HashMap<>();
     }
 
     public ChannelOptionMap(ChannelOptionKey channelOptionKey, String value)
     {
-        this.channelOptionMap.put(channelOptionKey, value);
+        this.map.put(channelOptionKey, value);
     }
 
     public String get(ChannelOptionKey channelOptionKey)
     {
-        return this.channelOptionMap.get(channelOptionKey);
+        return this.map.get(channelOptionKey);
     }
 
     public void put(ChannelOptionKey channelOptionKey, String value)
     {
-        this.channelOptionMap.put(channelOptionKey, value);
+        this.map.put(channelOptionKey, value);
     }
 
     public static ChannelOptionMap fromJson(String value)
@@ -44,7 +44,7 @@ public class ChannelOptionMap
     public String toString()
     {
         return "ChannelOptionMap{" +
-                "channelOptionMap=" + channelOptionMap +
+                "map=" + map +
                 '}';
     }
 }
