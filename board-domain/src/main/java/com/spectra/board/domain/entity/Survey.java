@@ -2,6 +2,7 @@ package com.spectra.board.domain.entity;
 
 import java.util.Set;
 
+import com.spectra.board.domain.granule.SurveyAnswerType;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
 import com.spectra.board.domain.granule.PostInfo;
@@ -10,6 +11,7 @@ import com.spectra.board.domain.granule.SurveyAnswer;
 import com.spectra.board.domain.granule.SurveyAnswerSet;
 import com.spectra.board.domain.granule.SurveyOptionKey;
 import com.spectra.board.domain.granule.SurveyOptionMap;
+import com.spectra.share.util.TimeUtil;
 
 public class Survey extends Post
 {
@@ -129,5 +131,54 @@ public class Survey extends Post
                     throw new RuntimeException("Undefined field:" + nameValue.getName());
             }
         }
+    }
+
+    public static Survey getWhereSample()
+    {
+        Survey survey = new Survey(Board.getNotifySample().getCurrentPostInfo(), "금주 회식 장소 조사", User.getAdminSample().getId());
+        SurveyOptionMap surveyOptionMap = new SurveyOptionMap();
+        surveyOptionMap.put(SurveyOptionKey.ALLOW_ADD_ANSWER, Boolean.toString(true));
+        surveyOptionMap.put(SurveyOptionKey.ALLOW_ANONYMOUS, Boolean.toString(true));
+        survey.setOptionMap(surveyOptionMap);
+        SurveyAnswerSet surveyAnswerSet = new SurveyAnswerSet();
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.IMAGE, "A식당 사진"));
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.IMAGE, "B식당 사진"));
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.IMAGE, "C식당 사진"));
+        survey.setAnswerSet(surveyAnswerSet);
+        survey.setExpiredDate(TimeUtil.getTime("20180431120000"));
+        return survey;
+    }
+
+    public static Survey getWhenSample()
+    {
+        Survey survey = new Survey(Board.getNotifySample().getCurrentPostInfo(), "금주 회식 날짜 조사", User.getAdminSample().getId());
+        SurveyOptionMap surveyOptionMap = new SurveyOptionMap();
+        surveyOptionMap.put(SurveyOptionKey.ALLOW_ANONYMOUS, Boolean.toString(true));
+        surveyOptionMap.put(SurveyOptionKey.ALLOW_MULTI_SELECT, Boolean.toString(true));
+        survey.setOptionMap(surveyOptionMap);
+        SurveyAnswerSet surveyAnswerSet = new SurveyAnswerSet();
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.DATE, "20180509"));
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.DATE, "20180510"));
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.DATE, "20180511"));
+        survey.setAnswerSet(surveyAnswerSet);
+        survey.setExpiredDate(TimeUtil.getTime("20180431120000"));
+        return survey;
+    }
+
+    public static Survey getWhatSample()
+    {
+        Survey survey = new Survey(Board.getNotifySample().getCurrentPostInfo(), "금주 회식 메뉴 조사", User.getAdminSample().getId());
+        SurveyOptionMap surveyOptionMap = new SurveyOptionMap();
+        surveyOptionMap.put(SurveyOptionKey.ALLOW_ADD_ANSWER, Boolean.toString(true));
+        surveyOptionMap.put(SurveyOptionKey.ALLOW_ANONYMOUS, Boolean.toString(true));
+        surveyOptionMap.put(SurveyOptionKey.ALLOW_MULTI_SELECT, Boolean.toString(true));
+        survey.setOptionMap(surveyOptionMap);
+        SurveyAnswerSet surveyAnswerSet = new SurveyAnswerSet();
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.IMAGE, "돼지 사진"));
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.IMAGE, "소 사진"));
+        surveyAnswerSet.add(new SurveyAnswer(SurveyAnswerType.IMAGE, "물고기 사진"));
+        survey.setAnswerSet(surveyAnswerSet);
+        survey.setExpiredDate(TimeUtil.getTime("20180431120000"));
+        return survey;
     }
 }

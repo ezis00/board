@@ -1,17 +1,21 @@
 package com.spectra.board.domain.entity;
 
+import java.util.Arrays;
 import java.util.Set;
 
 import com.spectra.board.domain.granule.Attach;
+import com.spectra.board.domain.granule.AttachType;
 import com.spectra.board.domain.granule.BoardAttachSet;
 import com.spectra.board.domain.granule.BoardOptionKey;
 import com.spectra.board.domain.granule.BoardOptionMap;
+import com.spectra.board.domain.granule.Level;
+import com.spectra.board.domain.granule.Notify;
+import com.spectra.board.domain.granule.NotifyOptionKey;
+import com.spectra.board.domain.granule.PostInfo;
+import com.spectra.board.domain.granule.PostType;
 import com.spectra.board.domain.share.granule.IdSet;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
-import com.spectra.board.domain.granule.Notify;
-import com.spectra.board.domain.granule.PostInfo;
-import com.spectra.board.domain.granule.PostType;
 
 public class Board extends Post
 {
@@ -185,5 +189,36 @@ public class Board extends Post
                     throw new RuntimeException("Undefined field:" + nameValue.getName());
             }
         }
+    }
+
+    public static Board getNotifySample()
+    {
+        Board board = new Board(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
+        board.setTitle("회식 설문조사 안내");
+        board.setContents("차주에 진행되는 회식과 관련해서 아래 항목의 설문에 응답 부탁드립니다.");
+        board.addBoardOption(BoardOptionKey.NOTICE, Boolean.toString(true));
+        Notify notify = new Notify("20180424120000", "20180428120000", Arrays.asList(Level.EMAIL, Level.SMS));
+        notify.addNotifyOption(NotifyOptionKey.REPORT_ME_FLAG, Boolean.toString(true));
+        board.setNotify(notify);
+        return board;
+    }
+
+    public static Board getNoticeSample()
+    {
+        Board board = new Board(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
+        board.setTitle("사내 보안 프로그램 패치 공유");
+        board.setContents("아래 보안 프로그램을 꼭 설치 부탁드립니다..");
+        board.addBoardOption(BoardOptionKey.NOTICE, Boolean.toString(true));
+        board.addAttach(new Attach(AttachType.EXE, "보안프로그램패치파일"));
+        return board;
+    }
+
+    public static Board getPrivateSample()
+    {
+        Board board = new Board(Channel.getSample().getCurrentPostInfo(), User.getAdminSample().getId());
+        board.setTitle("작성중");
+        board.setContents("작성중인 글입니다.");
+        board.addBoardOption(BoardOptionKey.PRIVATE, Boolean.toString(true));
+        return board;
     }
 }

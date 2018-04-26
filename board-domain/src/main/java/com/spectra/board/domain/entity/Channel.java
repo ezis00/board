@@ -30,6 +30,17 @@ public class Channel extends Post
         this.idSet = new IdSet();
     }
 
+    public static Channel getSample()
+    {
+        Channel channel = new Channel("영업 비밀", User.getAdminSample().getId());
+        channel.setMemberIdSet(IdSet.getSample());
+        channel.addOption(ChannelOptionKey.PRIVATE, "true");
+        channel.addOption(ChannelOptionKey.ATTACH_MAX_SIZE_MB, "1000");
+        channel.addOption(ChannelOptionKey.THUMBNAIL_IMAGE_ID, "thumbnail_image_id");
+        channel.addOption(ChannelOptionKey.BACKGROUND_IMAGE_ID, "background_image_id");
+        return channel;
+    }
+
     public PostType getPostType()
     {
         return postType;
