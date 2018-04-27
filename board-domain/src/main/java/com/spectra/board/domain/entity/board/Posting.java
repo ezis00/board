@@ -1,7 +1,6 @@
 package com.spectra.board.domain.entity.board;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 import com.spectra.board.domain.entity.Tag;
@@ -33,10 +32,10 @@ public class Posting extends Board
     private Notify notify;
     private int viewCount;
 
-    transient private List<Comment> commentList;
-    transient private List<Posting> postingList;
-    transient private List<Vote> voteList;
-    transient private List<Tag> tagList;
+    transient private Comment comment;
+    transient private Posting posting;
+    transient private Vote vote;
+    transient private Tag tag;
 
     public Posting(String writerId)
     {

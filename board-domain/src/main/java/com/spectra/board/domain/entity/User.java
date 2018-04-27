@@ -3,7 +3,12 @@ package com.spectra.board.domain.entity;
 import java.util.Arrays;
 import java.util.List;
 
-import com.spectra.board.domain.entity.board.Board;
+import com.spectra.board.domain.entity.board.Channel;
+import com.spectra.board.domain.entity.board.Comment;
+import com.spectra.board.domain.entity.board.Posting;
+import com.spectra.board.domain.entity.board.Vote;
+import com.spectra.board.domain.entity.board.survey.Survey;
+import com.spectra.board.domain.entity.board.survey.SurveyResult;
 import com.spectra.board.domain.granule.UserType;
 import com.spectra.board.domain.share.granule.NameValue;
 import com.spectra.board.domain.share.granule.NameValueList;
@@ -17,8 +22,13 @@ public class User extends Entity
     private final long joinDate;
     private int loginCount;
 
-    transient private List<Board> boardList;
-    transient private List<Scrap> scrapList;
+    transient private Channel channel;
+    transient private Comment comment;
+    transient private Posting posting;
+    transient private Vote vote;
+    transient private Scrap scrap;
+    transient private Survey survey;
+    transient private SurveyResult surveyResult;
 
     public User(UserType userType, String name, String phone, String email)
     {

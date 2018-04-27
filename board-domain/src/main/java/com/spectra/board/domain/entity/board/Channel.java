@@ -1,6 +1,5 @@
 package com.spectra.board.domain.entity.board;
 
-import java.util.List;
 import java.util.Set;
 
 import com.spectra.board.domain.entity.User;
@@ -19,9 +18,9 @@ public class Channel extends Board
     private ChannelOptionMap channelOptionMap;
     private IdSet memberIdSet;
 
-    transient private List<Channel> channelList;
-    transient private List<Comment> commentList;
-    transient private List<Posting> postingList;
+    transient private Channel channel;
+    transient private Comment comment;
+    transient private Posting posting;
 
     public Channel(String writerId, String name)
     {

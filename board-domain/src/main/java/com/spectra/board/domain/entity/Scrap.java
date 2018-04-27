@@ -1,7 +1,5 @@
 package com.spectra.board.domain.entity;
 
-import java.util.List;
-
 import com.spectra.board.domain.entity.board.Posting;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.share.granule.NameValue;
@@ -12,8 +10,6 @@ public class Scrap extends Entity
     private final PostInfo postInfo;
     private final String userId;
     private final long date;
-
-    transient private List<Posting> postingList;
 
     public Scrap(PostInfo postInfo, String userId)
     {

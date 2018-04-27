@@ -1,7 +1,5 @@
 package com.spectra.board.domain.entity.board;
 
-import java.util.List;
-
 import com.spectra.board.domain.entity.User;
 import com.spectra.board.domain.granule.PostInfo;
 import com.spectra.board.domain.granule.PostType;
@@ -14,7 +12,7 @@ public class Comment extends Board
     private String contents;
     private long lastUpdateDate;
 
-    transient private List<Comment> commentList;
+    transient private Comment comment;
 
     public Comment(PostInfo parentPostInfo, String writerId)
     {
